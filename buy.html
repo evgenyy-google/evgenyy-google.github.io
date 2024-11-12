@@ -14,7 +14,21 @@
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <h1>Woop, you've bought something!</h1>
+    <h1>Thank you for buying something!</h1>
+
+    <p style="color:red; font-weight:bold">WARNING: This site is used for testing purposes, you will not actually buy anything.</p>
+
+    <p>You bought "<span id="product"></span>" for $<span id="price"></span></p>
+
+    <p>Your email was: <span id="email"></span></p>
 
     <a href="index.html">Buy again?</a>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        document.getElementById('product').textContent = urlParams.get('product');
+        document.getElementById('price').textContent = urlParams.get('price');
+        document.getElementById('email').textContent = urlParams.get('email');
+    </script>
 </body>
