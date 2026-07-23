@@ -2,11 +2,11 @@
 
 ```text
 00:00 [SLIDE 1] Title Screen (Video Hidden)
-00:04 SPEAK: Welcome to Antigravity: Coding Agents in Action.
-00:07 SPEAK: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
+00:02 SPEAK: Welcome to Antigravity: Coding Agents in Action.
+00:06 SPEAK: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
 00:10 [SLIDE 2] Presenter Intro & Goal (Video Hidden)
-00:10 SPEAK: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots at top speed.
-00:15 SPEAK: 8+ years leading Bloomberg global SRE teams: balancing fast-paced velocity with mission-critical reliability.
+00:10 SPEAK: Vibe coder by design, using GenAI to produce rapid customer pilots at top speed.
+00:15 SPEAK: With years of experience in reliability, balancing fast velocity with mission-critical systems.
 00:22 SPEAK: Today's goal: Maximize hackathon velocity through agentic workflows while sustaining peak productivity.
 00:30 [SLIDE 3] Product Surfaces & Demo Start (Center Modal Zoom)
 00:30 SPEAK: Here's Antigravity in action! We ask the agent to build and deploy a complete full-stack application.
