@@ -112,14 +112,14 @@ timeline:
   speed: 1.5
   playing: true
 - start: 50.0
-  dur: 9.46
+  dur: 11.7
   pos: hidden
-  cc: 'Antigravity provides four product surfaces to fit any workflow: Antigravity
-    2.0, CLI, IDE, and Python SDK.'
+  cc: 'Antigravity provides four product surfaces to fit any workflow: the Antigravity
+    2.0 Desktop app, CLI, a feature-rich IDE, and a Python SDK.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_07.mp3
-  duration: 9.46
-  end: 59.46
+  duration: 11.7
+  end: 61.7
 - start: 62.0
   dur: 8.34
   pos: hidden

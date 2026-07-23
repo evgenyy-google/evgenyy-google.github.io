@@ -13,7 +13,7 @@
 00:34 [VIDEO] Zoomed prompt fast-forward typing (2.0x speed)
 00:40 SPEAK: Once submitted, the agent will process our prompt, formulate an implementation plan, and execute tasks autonomously in the background.
 00:50 [VIDEO] Side Panel Block 1 (1.5x speed)
-00:50 SPEAK: Antigravity provides four product surfaces to fit any workflow: Antigravity 2.0, CLI, IDE, and Python SDK.
+00:50 SPEAK: Antigravity provides four product surfaces to fit any workflow: the Antigravity 2.0 Desktop app, CLI, a feature-rich IDE, and a Python SDK.
 01:02 SPEAK: Each surface is powered by the same underlying harness, giving developers complete flexibility across a single intelligence engine.
 01:15 [SLIDE 4] Full-Stack Harness Architecture (Side Panel 1.5x)
 01:15 SPEAK: Now moving to architecture: here is the general structure of coding agent harnesses.
