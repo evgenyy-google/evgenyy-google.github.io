@@ -21,13 +21,13 @@ timeline:
   duration: 4.54
   end: 6.54
 - start: 6.5
-  dur: 5.46
+  dur: 6.66
   pos: hidden
   cc: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_01.mp3
-  duration: 5.46
-  end: 11.96
+  duration: 6.66
+  end: 13.16
 - start: 10
   duration: 20
   type: slide
@@ -39,15 +39,15 @@ timeline:
   seek: 0
   speed: 1.0
   playing: false
-- start: 12.1
+- start: 13.2
   dur: 6.22
   pos: hidden
   cc: Vibe coder by design, using GenAI to produce rapid customer pilots at top speed.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_02.mp3
   duration: 6.22
-  end: 18.32
-- start: 18.3
+  end: 19.42
+- start: 19.4
   dur: 6.26
   pos: hidden
   cc: With years of experience in reliability, balancing fast velocity with mission-critical
@@ -55,8 +55,8 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_03.mp3
   duration: 6.26
-  end: 24.56
-- start: 24.6
+  end: 25.66
+- start: 25.7
   dur: 7.3
   pos: hidden
   cc: 'Today''s goal: Maximize hackathon velocity through agentic workflows while
@@ -64,7 +64,7 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_04.mp3
   duration: 7.3
-  end: 31.9
+  end: 33.0
 - start: 30
   duration: 45
   type: slide
@@ -77,7 +77,7 @@ timeline:
   seek: 0
   speed: 1.0
   playing: true
-- start: 31.9
+- start: 33.0
   dur: 7.38
   pos: hidden
   cc: Here's Antigravity in action! We ask the agent to build and deploy a complete
@@ -85,7 +85,7 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_05.mp3
   duration: 7.38
-  end: 39.28
+  end: 40.38
 - start: 34
   duration: 16
   type: video
@@ -94,7 +94,7 @@ timeline:
   seek: 4
   speed: 2.0
   playing: true
-- start: 40.0
+- start: 40.4
   dur: 7.7
   pos: hidden
   cc: Once submitted, the agent will process the prompt, formulate an implementation
@@ -102,7 +102,7 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_06.mp3
   duration: 7.7
-  end: 47.7
+  end: 48.1
 - start: 50
   duration: 25
   type: video
