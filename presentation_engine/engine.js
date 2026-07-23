@@ -174,10 +174,13 @@
     seekToSecond(bounds.start);
   }
 
+  // Collect ONLY slide boundary timestamps so Prev and Next step slide by slide
   function getTransitionTimestamps() {
     const timestamps = new Set([0]);
     timelineEvents.forEach(ev => {
-      if (ev.start !== undefined) timestamps.add(ev.start);
+      if (ev.type === 'slide' && ev.start !== undefined) {
+        timestamps.add(ev.start);
+      }
     });
     return Array.from(timestamps).sort((a, b) => a - b);
   }
@@ -211,14 +214,14 @@
 
   function goToNextTransition() {
     const transitions = getTransitionTimestamps();
-    const next = transitions.find(t => t > elapsedTime);
+    const next = transitions.find(t => t > elapsedTime + 0.1);
     if (next !== undefined) seekToSecond(next);
     else seekToSecond(TOTAL_DURATION);
   }
 
   function goToPrevTransition() {
     const transitions = getTransitionTimestamps();
-    const prevList = transitions.filter(t => t < elapsedTime - 1.5);
+    const prevList = transitions.filter(t => t < elapsedTime - 0.5);
     if (prevList.length > 0) seekToSecond(prevList[prevList.length - 1]);
     else seekToSecond(0);
   }
@@ -256,16 +259,94 @@
     }
   }
 
-  // Evaluate Active Timeline State Frame
+  // Compute and apply focal crop and video modal geometry
+  function updateVideoLayoutAndCrop(pos, cropStr, speed) {
+    if (!videoContainer || !demoVideo) return;
+    const speedBadge = document.getElementById('video-speed-badge');
+
+    if (pos === 'hidden') {
+      videoContainer.className = 'video-pos-hidden';
+      if (speedBadge) speedBadge.style.display = 'none';
+      return;
+    }
+
+    videoContainer.className = `video-pos-${pos}`;
+
+    let cropObj = null;
+    if (cropStr) {
+      const clean = cropStr.replace(/^crop=/, '');
+      const parts = clean.split(':').map(Number);
+      if (parts.length === 4 && parts.every(n => !isNaN(n))) {
+        cropObj = { w: parts[0], h: parts[1], x: parts[2], y: parts[3] };
+      }
+    }
+
+    if (cropObj && demoVideo.videoWidth > 0) {
+      const { w: out_w, h: out_h, x, y } = cropObj;
+      const cW = videoContainer.clientWidth || 800;
+      const cH = videoContainer.clientHeight || 450;
+      const srcW = demoVideo.videoWidth || 1920;
+      const srcH = demoVideo.videoHeight || 1080;
+
+      demoVideo.style.position = 'absolute';
+      demoVideo.style.maxWidth = 'none';
+      demoVideo.style.maxHeight = 'none';
+      demoVideo.style.width = `${Math.round((srcW / out_w) * cW)}px`;
+      demoVideo.style.height = `${Math.round((srcH / out_h) * cH)}px`;
+      demoVideo.style.left = `-${Math.round((x / out_w) * cW)}px`;
+      demoVideo.style.top = `-${Math.round((y / out_h) * cH)}px`;
+    } else {
+      demoVideo.style.position = 'relative';
+      demoVideo.style.width = '100%';
+      demoVideo.style.height = '100%';
+      demoVideo.style.left = '0';
+      demoVideo.style.top = '0';
+    }
+
+    const activeSpeed = speed || 1.0;
+    if (speedBadge) {
+      if (activeSpeed > 1.0) {
+        speedBadge.style.display = 'inline-block';
+        speedBadge.textContent = `${activeSpeed}x FAST-FORWARD`;
+      } else {
+        speedBadge.style.display = 'none';
+      }
+    }
+  }
+
+  // Evaluate Active Timeline State Frame (Deterministic Pure Function of Second)
   function evaluateTimelineState(second) {
     let activeSlideNum = currentSlideIndex + 1;
     let activeVideoPos = 'hidden';
+    let activeCropStr = '';
+    let activeVideoSpeed = 1.0;
     let activeToastText = '';
     let activeCcText = '';
     let activeCcSpeaker = '';
     let activeAudioPath = null;
     let activeAudioStart = -1;
 
+    // 1. Pure deterministic evaluate of declarative CSS class rules
+    timelineEvents.forEach(ev => {
+      if (ev.type === 'class' && ev.target && ev.class) {
+        const duration = ev.duration || ev.dur || 5;
+        const evEnd = ev.end || (ev.start + duration);
+        const isActive = second >= ev.start && second < evEnd;
+        const targetEl = document.querySelector(ev.target);
+        if (targetEl) {
+          if (isActive) {
+            if (ev.action === 'remove') targetEl.classList.remove(ev.class);
+            else targetEl.classList.add(ev.class);
+          } else {
+            // Revert when leaving window forward or seeking backward
+            if (ev.action === 'remove') targetEl.classList.add(ev.class);
+            else targetEl.classList.remove(ev.class);
+          }
+        }
+      }
+    });
+
+    // 2. Evaluate slide, video, speech, caption, and toast states
     for (let ev of timelineEvents) {
       const duration = ev.duration || ev.dur || 0;
       const evEnd = ev.end || (ev.start + duration);
@@ -281,15 +362,10 @@
           activeSlideNum = ev.slide;
         } else if (ev.type === 'video' && (ev.pos || ev.position) && isActive) {
           activeVideoPos = ev.pos || ev.position;
+          activeCropStr = ev.crop || '';
+          activeVideoSpeed = ev.speed || 1.0;
         } else if (ev.type === 'toast' && isActive) {
           activeToastText = ev.text || ev.toast || '';
-        } else if (ev.type === 'class' && ev.target && ev.class && isActive) {
-          const targetEl = document.querySelector(ev.target);
-          if (targetEl) {
-            if (ev.action === 'remove') targetEl.classList.remove(ev.class);
-            else if (ev.action === 'toggle') targetEl.classList.toggle(ev.class);
-            else targetEl.classList.add(ev.class);
-          }
         }
       }
 
@@ -303,9 +379,17 @@
     // Sync speech audio playback
     syncSpeechAudio(activeAudioPath, second, activeAudioStart);
 
-    // Apply Video Container Position Class
-    if (videoContainer) {
-      videoContainer.className = `video-pos-${activeVideoPos}`;
+    // Apply Video Container Position Class & Focal Crop
+    updateVideoLayoutAndCrop(activeVideoPos, activeCropStr, activeVideoSpeed);
+
+    // Sync Video element playing state
+    if (demoVideo && demoVideo.readyState >= 2) {
+      if (activeVideoPos !== 'hidden' && !isPaused) {
+        demoVideo.playbackRate = activeVideoSpeed * playbackSpeed;
+        if (demoVideo.paused) demoVideo.play().catch(() => {});
+      } else {
+        if (!demoVideo.paused) demoVideo.pause();
+      }
     }
 
     // Apply Toast Status Badge State
