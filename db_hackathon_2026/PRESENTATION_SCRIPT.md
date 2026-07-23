@@ -3,7 +3,7 @@
 ```text
 00:00 [SLIDE 1] Title Screen (Video Hidden)
 00:00 SPEAK: Welcome to Antigravity: Coding Agents in Action.
-00:03 SPEAK: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
+00:04 SPEAK: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
 00:10 [SLIDE 2] Presenter Intro & Goal (Video Hidden)
 00:10 SPEAK: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots at top speed.
 00:15 SPEAK: 8+ years leading Bloomberg global SRE teams: balancing fast-paced velocity with mission-critical reliability.
@@ -13,7 +13,7 @@
 00:34 [VIDEO] Zoomed prompt fast-forward typing (2.0x speed)
 00:40 SPEAK: Once submitted, the agent will process the prompt, formulate an implementation plan, and execute tasks autonomously.
 00:50 [VIDEO] Side Panel Block 1 (1.5x speed)
-00:50 SPEAK: Antigravity provides four product surfaces to fit any workflow: Antigravity 2.0, CLI (agy), IDE, and Python SDK.
+00:50 SPEAK: Antigravity provides four product surfaces to fit any workflow: Antigravity 2.0, CLI, IDE, and Python SDK.
 01:02 SPEAK: Each surface is powered by the same underlying harness, giving developers complete flexibility without sacrificing workflow context.
 01:15 [SLIDE 4] Full-Stack Harness Architecture (Side Panel 1.5x)
 01:15 SPEAK: Now moving to architecture: here is the general structure of coding agent harnesses.

@@ -39,7 +39,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   let elapsedTime = 0;
   let isPaused = true;
   let ccEnabled = true;
-  let playbackSpeed = 3.0;
+  let isAudioMuted = false;
+  let playbackSpeed = 1.0;
+  let currentSpeechAudio = null;
+  let currentSpeechPath = null;
   let timelineEvents = [];
   let TOTAL_DURATION = 300;
 
@@ -397,6 +400,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Evaluate state of all event channels (slide, video, toast, cc, element) at current second
+  // Sync / Play Speech Chunk Audio Event
+  function syncSpeechAudio(activeAudioPath, second, activeAudioStart) {
+    if (isPaused || isAudioMuted || !activeAudioPath) {
+      if (currentSpeechAudio && !currentSpeechAudio.paused) {
+        currentSpeechAudio.pause();
+      }
+      return;
+    }
+
+    if (currentSpeechPath !== activeAudioPath) {
+      if (currentSpeechAudio) {
+        currentSpeechAudio.pause();
+      }
+      currentSpeechPath = activeAudioPath;
+      currentSpeechAudio = new Audio(activeAudioPath);
+      currentSpeechAudio.muted = isAudioMuted;
+      currentSpeechAudio.playbackRate = playbackSpeed;
+      const offset = Math.max(0, second - activeAudioStart);
+      try {
+        currentSpeechAudio.currentTime = offset;
+      } catch (e) {}
+      currentSpeechAudio.play().catch(e => console.warn('Speech audio auto-play block:', e));
+    } else if (currentSpeechAudio) {
+      currentSpeechAudio.muted = isAudioMuted;
+      currentSpeechAudio.playbackRate = playbackSpeed;
+      if (currentSpeechAudio.paused && !isPaused && !isAudioMuted) {
+        currentSpeechAudio.play().catch(() => {});
+      }
+    }
+  }
+
   function evaluateTimelineState(second) {
     let activeSlideNum = currentSlideIndex + 1;
     let activeVideoPos = 'hidden';
@@ -406,12 +440,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     let activeToast = '';
     let activeCc = '';
     let ccOpacity = 0.0;
+    let activeAudioPath = null;
+    let activeAudioStart = -1;
     let lastTransitionSecond = -1;
 
     for (let ev of timelineEvents) {
       const duration = ev.duration || ev.dur || 0;
       const evEnd = ev.end || (ev.start + duration);
       const isActive = second >= ev.start && (duration || ev.end ? second < evEnd : true);
+
+      if (ev.audio && second >= ev.start && (evEnd ? second < evEnd : true)) {
+        activeAudioPath = ev.audio;
+        activeAudioStart = ev.start;
+      }
 
       if (second >= ev.start) {
         if (ev.type === 'slide' && ev.slide && isActive) {
@@ -438,9 +479,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         lastTransitionSecond = Math.max(lastTransitionSecond, ev.start);
       }
 
-      if ((ev.type === 'cc' || ev.type === 'caption' || ev.type === 'closed-caption' || ev.type === 'subtitle')) {
+      if ((ev.type === 'cc' || ev.type === 'caption' || ev.type === 'closed-caption' || ev.type === 'subtitle' || ev.cc)) {
         if (second >= ev.start && second < evEnd) {
-          activeCc = ev.text || '';
+          activeCc = ev.cc || ev.text || '';
           const fadeDur = Math.min(0.5, (evEnd - ev.start) / 2);
           const tRel = second - ev.start;
           const tRem = evEnd - second;
@@ -454,6 +495,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
     }
+
+    syncSpeechAudio(activeAudioPath, second, activeAudioStart);
 
     // Apply slide switch if slide changed
     const targetSlideIdx = activeSlideNum - 1;
@@ -583,6 +626,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       playbackSpeed = SPEED_STEPS[stepIdx] || 1.0;
       if (speedVal) speedVal.textContent = formatSpeedText(playbackSpeed);
       video.playbackRate = playbackSpeed;
+      if (currentSpeechAudio) {
+        currentSpeechAudio.playbackRate = playbackSpeed;
+      }
       if (!isPaused) {
         startTimeline();
       }
@@ -596,6 +642,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       ccToggleBtn.classList.toggle('active', ccEnabled);
       if (ccOverlay) {
         ccOverlay.classList.toggle('active', ccEnabled);
+      }
+    });
+  }
+
+  // Audio Speech Mute Toggle
+  const audioMuteBtn = document.getElementById('audio-mute-btn');
+  if (audioMuteBtn) {
+    audioMuteBtn.addEventListener('click', () => {
+      isAudioMuted = !isAudioMuted;
+      audioMuteBtn.classList.toggle('active', !isAudioMuted);
+      audioMuteBtn.innerHTML = isAudioMuted ? '🔇 Unmute' : '🔊 Mute';
+      if (currentSpeechAudio) {
+        currentSpeechAudio.muted = isAudioMuted;
+        if (isAudioMuted) {
+          currentSpeechAudio.pause();
+        } else if (!isPaused) {
+          currentSpeechAudio.play().catch(() => {});
+        }
       }
     });
   }
@@ -615,6 +679,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (e.key === 'c' || e.key === 'C') {
       if (ccToggleBtn) ccToggleBtn.click();
+      return;
+    }
+
+    if (e.key === 'm' || e.key === 'M') {
+      if (audioMuteBtn) audioMuteBtn.click();
       return;
     }
 
