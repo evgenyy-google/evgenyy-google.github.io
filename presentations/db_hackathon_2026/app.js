@@ -438,13 +438,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Sync / Play Speech Chunk Audio Event (Let previous clip finish out fully; drop next clip if previous is still speaking)
   function syncSpeechAudio(activeAudioPath, second, activeAudioStart) {
     if (isPaused || isAudioMuted || !activeAudioPath) {
+      if (currentSpeechAudio && !currentSpeechAudio.paused) {
+        currentSpeechAudio.pause();
+      }
       return;
     }
 
     if (currentSpeechPath !== activeAudioPath) {
-      // If previous clip is still speaking (not ended & not paused), let it finish out and drop the new clip
-      if (currentSpeechAudio && !currentSpeechAudio.ended && !currentSpeechAudio.paused && currentSpeechAudio.currentTime > 0) {
-        return;
+      if (currentSpeechAudio) {
+        currentSpeechAudio.pause();
       }
       currentSpeechPath = activeAudioPath;
       currentSpeechAudio = speechAudioCache.get(activeAudioPath) || new Audio(activeAudioPath);
@@ -459,6 +461,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       currentSpeechAudio.muted = isAudioMuted;
       currentSpeechAudio.playbackRate = playbackSpeed;
       if (currentSpeechAudio.paused && !isPaused && !isAudioMuted && !currentSpeechAudio.ended) {
+        const offset = Math.max(0, second - activeAudioStart);
+        try {
+          if (Math.abs(currentSpeechAudio.currentTime - offset) > 0.3) {
+            currentSpeechAudio.currentTime = offset;
+          }
+        } catch (e) {}
         currentSpeechAudio.play().catch(() => {});
       }
     }
