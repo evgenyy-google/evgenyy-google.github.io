@@ -2,7 +2,7 @@
 
 ```text
 00:00 [SLIDE 1] Title Screen (Video Hidden)
-00:00 SPEAK: Welcome to Antigravity: Coding Agents in Action.
+00:04 SPEAK: Welcome to Antigravity: Coding Agents in Action.
 00:07 SPEAK: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
 00:10 [SLIDE 2] Presenter Intro & Goal (Video Hidden)
 00:10 SPEAK: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots at top speed.

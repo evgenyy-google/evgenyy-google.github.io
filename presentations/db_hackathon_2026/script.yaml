@@ -12,20 +12,20 @@ timeline:
   seek: 0
   speed: 1.0
   playing: false
-- start: 0
-  dur: 6.38
+- start: 4
+  dur: 5.26
   pos: hidden
   cc: 'Welcome to Antigravity: Coding Agents in Action.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_00.mp3
-  duration: 6.38
+  duration: 5.26
 - start: 7
-  dur: 9.34
+  dur: 6.38
   pos: hidden
   cc: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_01.mp3
-  duration: 9.34
+  duration: 6.38
 - start: 10
   duration: 20
   type: slide
@@ -38,29 +38,29 @@ timeline:
   speed: 1.0
   playing: false
 - start: 10
-  dur: 8.98
+  dur: 8.62
   pos: hidden
   cc: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots
     at top speed.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_02.mp3
-  duration: 8.98
+  duration: 8.62
 - start: 15
-  dur: 11.74
+  dur: 9.34
   pos: hidden
   cc: '8+ years leading Bloomberg global SRE teams: balancing fast-paced velocity
     with mission-critical reliability.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_03.mp3
-  duration: 11.74
+  duration: 9.34
 - start: 22
-  dur: 6.62
+  dur: 8.46
   pos: hidden
   cc: 'Today''s goal: Maximize hackathon velocity through agentic workflows while
     sustaining peak productivity.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_04.mp3
-  duration: 6.62
+  duration: 8.46
 - start: 30
   duration: 45
   type: slide
@@ -74,13 +74,13 @@ timeline:
   speed: 1.0
   playing: true
 - start: 30
-  dur: 7.7
+  dur: 8.98
   pos: hidden
   cc: Here's Antigravity in action! We ask the agent to build and deploy a complete
     full-stack application.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_05.mp3
-  duration: 7.7
+  duration: 8.98
 - start: 34
   duration: 16
   type: video
@@ -90,13 +90,13 @@ timeline:
   speed: 2.0
   playing: true
 - start: 40
-  dur: 9.74
+  dur: 9.18
   pos: hidden
   cc: Once submitted, the agent will process the prompt, formulate an implementation
     plan, and execute tasks autonomously.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_06.mp3
-  duration: 9.74
+  duration: 9.18
 - start: 50
   duration: 25
   type: video
@@ -106,21 +106,21 @@ timeline:
   speed: 1.5
   playing: true
 - start: 50
-  dur: 13.74
+  dur: 11.74
   pos: hidden
   cc: 'Antigravity provides four product surfaces to fit any workflow: Antigravity
     2.0, CLI, IDE, and Python SDK.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_07.mp3
-  duration: 13.74
+  duration: 11.74
 - start: 62
-  dur: 10.3
+  dur: 9.62
   pos: hidden
   cc: Each surface is powered by the same underlying harness, giving developers complete
     flexibility without sacrificing workflow context.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_08.mp3
-  duration: 10.3
+  duration: 9.62
 - start: 75
   duration: 50
   type: slide
@@ -134,52 +134,52 @@ timeline:
   speed: 1.5
   playing: true
 - start: 75
-  dur: 12.22
+  dur: 6.62
   pos: hidden
   cc: 'Now moving to architecture: here is the general structure of coding agent harnesses.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_09.mp3
-  duration: 12.22
+  duration: 6.62
 - start: 80
-  dur: 9.94
+  dur: 9.46
   pos: hidden
   cc: While all Antigravity surfaces share this harness, modern tools like Claude
     or Codex follow similar core patterns.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_10.mp3
-  duration: 9.94
+  duration: 9.46
 - start: 88
-  dur: 10.02
+  dur: 7.7
   pos: hidden
   cc: At the core, an autonomous ReAct loop drives execution, reasoning, and iterative
     planning.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_11.mp3
-  duration: 10.02
+  duration: 7.7
 - start: 95
-  dur: 8.18
+  dur: 10.34
   pos: hidden
   cc: Context engineering enables user-defined rules, skill loading, sub-agent dispatching,
     and automatic context compaction.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_12.mp3
-  duration: 8.18
+  duration: 10.34
 - start: 103
-  dur: 10.38
+  dur: 9.74
   pos: hidden
   cc: The tooling layer provides file system access, shell execution, local MCP servers,
     and external API integrations.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_13.mp3
-  duration: 10.38
+  duration: 9.74
 - start: 111
-  dur: 6.86
+  dur: 8.82
   pos: hidden
   cc: Everything is ultimately powered by latest Gemini models, driving reasoning
     and tool execution at every step.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_14.mp3
-  duration: 6.86
+  duration: 8.82
 - start: 120
   duration: 50
   type: slide
@@ -193,27 +193,30 @@ timeline:
   speed: 1.5
   playing: true
 - start: 120
-  dur: 4
+  dur: 13.74
   pos: hidden
   cc: Now let's examine the 4-tier model. Framing our thinking from product spec to
     implementation, with coding agents we must decide our trade-offs between speed
     and control.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_15.mp3
+  duration: 13.74
 - start: 134
-  dur: 4
+  dur: 9.38
   pos: hidden
   cc: Because models naturally jump across levels while making decisions, stay aware
     of the active level to steer effectively.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_16.mp3
+  duration: 9.38
 - start: 147
-  dur: 4
+  dur: 10.3
   pos: hidden
   cc: 'Use two-way dialogue: TELL to lock constraints, and ASK to leverage model expertise
     for new ideas and blind spots.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_17.mp3
+  duration: 10.3
 - start: 160
   duration: 10
   type: video
@@ -223,12 +226,13 @@ timeline:
   speed: 2.0
   playing: true
 - start: 160
-  dur: 4
+  dur: 7.46
   pos: hidden
   cc: With implementation finished, we can see the agent launching a subagent to locally
     test the live app.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_18.mp3
+  duration: 7.46
 - start: 170
   duration: 20
   type: slide
@@ -242,19 +246,21 @@ timeline:
   speed: 4.3
   playing: true
 - start: 170
-  dur: 4
+  dur: 12.22
   pos: hidden
   cc: 'Next, let me show how prompt steering evolves: Basic prompts allow fast prototyping,
     but explicit stack constraints lock architecture early.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_19.mp3
+  duration: 12.22
 - start: 180
-  dur: 4
+  dur: 8.22
   pos: hidden
   cc: Locking tech stack contracts and interface rules upfront prevents chaotic drift
     on fast-moving projects.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_20.mp3
+  duration: 8.22
 - start: 190
   duration: 60
   type: slide
@@ -268,20 +274,22 @@ timeline:
   speed: 1.78
   playing: true
 - start: 190
-  dur: 4
+  dur: 9.94
   pos: hidden
   cc: In practice, I spend most of my time operating in multi-step feedback loops,
     actively steering models whenever they drift off course.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_21.mp3
+  duration: 9.94
 - start: 213
-  dur: 4
+  dur: 13.5
   pos: hidden
   cc: Interactive steering loops provide engineers with tight quality feedback cycles,
     exercising precise control over topology, stack locks, and execution without sacrificing
     momentum.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_22.mp3
+  duration: 13.5
 - start: 236
   duration: 14
   type: video
@@ -291,12 +299,13 @@ timeline:
   speed: 2.0
   playing: true
 - start: 236
-  dur: 4
+  dur: 10.02
   pos: hidden
   cc: With the app built and packaged, the agent autonomously handles deployment and
     validates that the live production Cloud Run site is up.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_23.mp3
+  duration: 10.02
 - start: 250
   duration: 40
   type: slide
@@ -310,18 +319,20 @@ timeline:
   speed: 2.0
   playing: true
 - start: 250
-  dur: 4
+  dur: 5.74
   pos: hidden
   cc: To wrap up with hackathon guidance, keep these three core principles in mind.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_24.mp3
+  duration: 5.74
 - start: 256
-  dur: 4
+  dur: 8.18
   pos: hidden
   cc: 'First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous
     feedback loops.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_25.mp3
+  duration: 8.18
 - start: 265
   duration: 15
   type: video
@@ -331,19 +342,21 @@ timeline:
   speed: 1.0
   playing: false
 - start: 265
-  dur: 4
+  dur: 10.18
   pos: hidden
   cc: 'Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible
     drift in team projects.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_26.mp3
+  duration: 10.18
 - start: 274
-  dur: 4
+  dur: 10.38
   pos: hidden
   cc: 'Third, autonomy: Empower agents with context to make decisions, sharing progress
     via Markdown artifacts or real-time chats.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_27.mp3
+  duration: 10.38
 - start: 280
   duration: 10
   type: video
@@ -353,12 +366,13 @@ timeline:
   speed: 1.5
   playing: true
 - start: 282
-  dur: 4
+  dur: 11.18
   pos: hidden
   cc: And here is the live walkthrough artifact, documenting every step from PRD to
     production with screenshots and evidence collected along the way!
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_28.mp3
+  duration: 11.18
 - start: 290
   duration: 10
   type: slide
@@ -371,9 +385,10 @@ timeline:
   speed: 1.0
   playing: false
 - start: 290
-  dur: 4
+  dur: 6.86
   pos: hidden
   cc: Thank you for listening! Go build something extraordinary and have an amazing
     hackathon!
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_29.mp3
+  duration: 6.86
