@@ -9,12 +9,12 @@
 00:15 SPEAK: With years of experience in reliability, balancing fast velocity with mission-critical systems.
 00:22 SPEAK: Today's goal: Maximize hackathon velocity through agentic workflows while sustaining peak productivity.
 00:30 [SLIDE 3] Product Surfaces & Demo Start (Center Modal Zoom)
-00:30 SPEAK: Here's Antigravity in action! We ask the agent to build and deploy a complete full-stack application.
+00:30 SPEAK: Here I am asking Antigravity to build a complete 2-tier application—and we'll keep an eye on how it's doing throughout our presentation.
 00:34 [VIDEO] Zoomed prompt fast-forward typing (2.0x speed)
-00:40 SPEAK: Once submitted, the agent will process the prompt, formulate an implementation plan, and execute tasks autonomously.
+00:40 SPEAK: Once submitted, the agent will process our prompt, formulate an implementation plan, and execute tasks autonomously in the background.
 00:50 [VIDEO] Side Panel Block 1 (1.5x speed)
 00:50 SPEAK: Antigravity provides four product surfaces to fit any workflow: Antigravity 2.0, CLI, IDE, and Python SDK.
-01:02 SPEAK: Each surface is powered by the same underlying harness, giving developers complete flexibility without sacrificing workflow context.
+01:02 SPEAK: Each surface is powered by the same underlying harness, giving developers complete flexibility across a single intelligence engine.
 01:15 [SLIDE 4] Full-Stack Harness Architecture (Side Panel 1.5x)
 01:15 SPEAK: Now moving to architecture: here is the general structure of coding agent harnesses.
 01:20 SPEAK: While all Antigravity surfaces share this harness, modern tools like Claude or Codex follow similar core patterns.
@@ -27,7 +27,7 @@
 02:14 SPEAK: Because models naturally jump across levels while making decisions, stay aware of the active level to steer effectively.
 02:27 SPEAK: Use two-way dialogue: TELL to lock constraints, and ASK to leverage model expertise for new ideas and blind spots.
 02:40 [VIDEO] Center Modal Splash - Local UI Audit (2.0x speed)
-02:40 SPEAK: With implementation finished, we can see the agent launching a subagent to locally test the live app.
+02:40 SPEAK: Let me pause to check in on our agent: with implementation finished, we can see it launching a subagent to locally test the live app.
 02:50 [SLIDE 6] Prompt Evolution: Good vs Better (Side Panel 4.3x)
 02:50 SPEAK: Next, let me show how prompt steering evolves: Basic prompts allow fast prototyping, but explicit stack constraints lock architecture early.
 03:00 SPEAK: Locking tech stack contracts and interface rules upfront prevents chaotic drift on fast-moving projects.
@@ -35,7 +35,7 @@
 03:10 SPEAK: In practice, I spend most of my time operating in multi-step feedback loops, actively steering models whenever they drift off course.
 03:33 SPEAK: Interactive steering loops provide engineers with tight quality feedback cycles, exercising precise control over topology, stack locks, and execution without sacrificing momentum.
 03:56 [VIDEO] Center Modal Splash - Cloud Run Live Deploy (2.0x speed)
-03:56 SPEAK: With the app built and packaged, the agent autonomously handles deployment and validates that the live production Cloud Run site is up.
+03:56 SPEAK: Let's check back in on our agent: with the app built and packaged, it's autonomously deploying to Cloud Run and validating live site health.
 04:10 [SLIDE 8] Hackathon Guidance & Takeaways (Side Panel 2.0x)
 04:10 SPEAK: To wrap up with hackathon guidance, keep these three core principles in mind.
 04:16 SPEAK: First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous feedback loops.
@@ -43,7 +43,7 @@
 04:25 SPEAK: Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible drift in team projects.
 04:34 SPEAK: Third, autonomy: Empower agents with context to make decisions, sharing progress via Markdown artifacts or real-time chats.
 04:42 [VIDEO] Center Modal Splash - Walkthrough Artifact (1.5x speed)
-04:42 SPEAK: And here is the live walkthrough artifact, documenting every step from PRD to production with screenshots and evidence collected along the way!
+04:42 SPEAK: Let's see the final outcome of what our agent accomplished: here is the live walkthrough artifact it generated—documenting every step from PRD to production with full evidence collected along the way!
 04:50 [SLIDE 9] Outro & Hackathon Farewell (Video Hidden)
 04:50 SPEAK: Thank you for listening! Go build something extraordinary and have an amazing hackathon!
 ```

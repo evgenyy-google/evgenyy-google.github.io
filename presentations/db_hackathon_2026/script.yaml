@@ -78,14 +78,14 @@ timeline:
   speed: 1.0
   playing: true
 - start: 33.0
-  dur: 7.38
+  dur: 8.3
   pos: hidden
-  cc: Here's Antigravity in action! We ask the agent to build and deploy a complete
-    full-stack application.
+  cc: Here I am asking Antigravity to build a complete 2-tier application—and we'll
+    keep an eye on how it's doing throughout our presentation.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_05.mp3
-  duration: 7.38
-  end: 40.38
+  duration: 8.3
+  end: 41.3
 - start: 34
   duration: 16
   type: video
@@ -94,15 +94,15 @@ timeline:
   seek: 4
   speed: 2.0
   playing: true
-- start: 40.4
-  dur: 7.7
+- start: 41.3
+  dur: 8.58
   pos: hidden
-  cc: Once submitted, the agent will process the prompt, formulate an implementation
-    plan, and execute tasks autonomously.
+  cc: Once submitted, the agent will process our prompt, formulate an implementation
+    plan, and execute tasks autonomously in the background.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_06.mp3
-  duration: 7.7
-  end: 48.1
+  duration: 8.58
+  end: 49.88
 - start: 50
   duration: 25
   type: video
@@ -124,7 +124,7 @@ timeline:
   dur: 8.34
   pos: hidden
   cc: Each surface is powered by the same underlying harness, giving developers complete
-    flexibility without sacrificing workflow context.
+    flexibility across a single intelligence engine.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_08.mp3
   duration: 8.34
@@ -243,14 +243,14 @@ timeline:
   speed: 2.0
   playing: true
 - start: 160.0
-  dur: 6.26
+  dur: 8.54
   pos: hidden
-  cc: With implementation finished, we can see the agent launching a subagent to locally
-    test the live app.
+  cc: 'Let me pause to check in on our agent: with implementation finished, we can
+    see it launching a subagent to locally test the live app.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_18.mp3
-  duration: 6.26
-  end: 166.26
+  duration: 8.54
+  end: 168.54
 - start: 170
   duration: 20
   type: slide
@@ -323,8 +323,8 @@ timeline:
 - start: 236.0
   dur: 8.18
   pos: hidden
-  cc: With the app built and packaged, the agent autonomously handles deployment and
-    validates that the live production Cloud Run site is up.
+  cc: 'Let''s check back in on our agent: with the app built and packaged, it''s autonomously
+    deploying to Cloud Run and validating live site health.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_23.mp3
   duration: 8.18
@@ -393,14 +393,15 @@ timeline:
   speed: 1.5
   playing: true
 - start: 283.6
-  dur: 9.26
+  dur: 12.3
   pos: hidden
-  cc: And here is the live walkthrough artifact, documenting every step from PRD to
-    production with screenshots and evidence collected along the way!
+  cc: 'Let''s see the final outcome of what our agent accomplished: here is the live
+    walkthrough artifact it generated—documenting every step from PRD to production
+    with full evidence collected along the way!'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_28.mp3
-  duration: 9.26
-  end: 292.86
+  duration: 12.3
+  end: 295.9
 - start: 290
   duration: 10
   type: slide
@@ -412,7 +413,7 @@ timeline:
   seek: 430
   speed: 1.0
   playing: false
-- start: 292.9
+- start: 295.9
   dur: 5.86
   pos: hidden
   cc: Thank you for listening! Go build something extraordinary and have an amazing
@@ -420,4 +421,4 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_29.mp3
   duration: 5.86
-  end: 298.76
+  end: 301.76
