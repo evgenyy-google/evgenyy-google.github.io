@@ -68,8 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   preloadVideoInMemory();
 
   // Load & Parse Event-Driven Schedule YAML (script.yaml)
-  try {
-    const res = await fetch('script.yaml');
+    const res = await fetch(window.location.search.includes('script') ? 'script.yaml' : 'timeline.yaml');
     const yamlText = await res.text();
     const parsedYaml = jsyaml.load(yamlText);
     
