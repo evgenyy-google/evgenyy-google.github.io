@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Declarative Web Presentation Engine (DWPE) Showcase</title>
+  <link rel="stylesheet" href="engine.css">
+  <link rel="stylesheet" href="deck.css">
+</head>
+<body>
+
+  <!-- Floating Toast Status Badge -->
+  <div id="toast-overlay" class="toast-hidden">
+    <div class="toast-card">
+      <span class="toast-dot"></span>
+      <span id="toast-text">Notification status update...</span>
+    </div>
+  </div>
+
+  <!-- Video Overlay & Backdrop Modal Container -->
+  <div id="video-container" class="video-pos-hidden">
+    <div class="video-top-lockup">
+      <span class="logo-badge">DWPE Core Showcase</span>
+    </div>
+    <video id="demo-video" src="../db_hackathon_2026/assets/live_demo.mp4" muted playsinline></video>
+    <div id="video-speed-badge">1.0x</div>
+  </div>
+
+  <!-- Single Canonical Slide Deck Hierarchy -->
+  <slides>
+    <!-- Slide 1: Title & Hero Badge -->
+    <slide id="slide-1">
+      <div class="slide-content">
+        <div class="badge-pill">Framework Standard</div>
+        <h1 class="hero-title">Declarative Web Presentation Engine</h1>
+        <p class="hero-subtitle">Zero-JS declarative keynotes driven by HTML, CSS, and timeline.yaml</p>
+      </div>
+    </slide>
+
+    <!-- Slide 2: Feature Matrix & Code Snippet -->
+    <slide id="slide-2">
+      <div class="slide-content">
+        <h2 class="section-title">Core Engine Architecture</h2>
+        <div class="card-grid">
+          <div class="card" id="card-timeline">
+            <span class="card-icon">📜</span>
+            <h3>timeline.yaml</h3>
+            <p>Single authoritative source of truth for slide transitions, speech clips, and video modals.</p>
+          </div>
+          <div class="card" id="card-engine">
+            <span class="card-icon">⚡</span>
+            <h3>engine.js</h3>
+            <p>Immutable runtime script managing keyboard shortcuts, timer count, and closed captions.</p>
+          </div>
+          <div class="card" id="card-css">
+            <span class="card-icon">🎨</span>
+            <h3>engine.css</h3>
+            <p>Base theme system providing neutral slate palettes and subtle Google color accents.</p>
+          </div>
+        </div>
+      </div>
+    </slide>
+
+    <!-- Slide 3: Centered Video Modal Zoom -->
+    <slide id="slide-3">
+      <div class="slide-content">
+        <h2 class="section-title">Centered Video Modal Overlay</h2>
+        <p class="hero-subtitle">Watch as timeline.yaml triggers centered video modal popups with pixel-exact focal crops.</p>
+      </div>
+    </slide>
+
+    <!-- Slide 4: Side-Panel Video & Toast Notification -->
+    <slide id="slide-4">
+      <div class="slide-content">
+        <h2 class="section-title">Side-Panel Layout & Toast Badges</h2>
+        <p class="hero-subtitle">Side-panel videos allow real-time watch-along demos while slide content remains fully visible.</p>
+      </div>
+    </slide>
+
+    <!-- Slide 5: Closed Caption Subtitle Alignment -->
+    <slide id="slide-5">
+      <div class="slide-content">
+        <h2 class="section-title">Audio & Closed Caption Sync</h2>
+        <p class="hero-subtitle">Pre-synthesized TTS MP3 speech clips play seamlessly with zero-overlap buffer management.</p>
+      </div>
+    </slide>
+
+    <!-- Slide 6: Outro & Takeaways -->
+    <slide id="slide-6">
+      <div class="slide-content">
+        <h2 class="section-title">Ready to Present</h2>
+        <p class="hero-subtitle">Clone engine/template/ into your new deck directory and start presenting!</p>
+      </div>
+    </slide>
+  </slides>
+
+  <!-- Closed Caption Subtitle Card -->
+  <div id="cc-overlay" class="cc-hidden">
+    <div class="cc-card">
+      <span id="cc-speaker">Presenter Name</span>
+      <p id="cc-text">Subtitle caption text...</p>
+    </div>
+  </div>
+
+  <!-- Minimalist Footer Navigation Bar -->
+  <footer class="footer-nav">
+    <div class="footer-left">
+      <button id="btn-prev" class="control-btn" title="Previous Slide"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M15 18l-6-6 6-6"/></svg>Prev</button>
+      <button id="btn-play" class="control-btn" title="Play/Pause"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play</button>
+      <button id="btn-next" class="control-btn" title="Next Slide">Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg></button>
+      <span id="timer-count">0:00</span>
+    </div>
+    <div class="footer-center">
+      <div class="speed-slider-container">
+        <label for="speed-slider">Pace:</label>
+        <input type="range" id="speed-slider" min="0" max="8" value="2" step="1">
+        <span id="speed-val">1.0x</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared Runtime Engine -->
+  <script src="engine.js"></script>
+</body>
+</html>

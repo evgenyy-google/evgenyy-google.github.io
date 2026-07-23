@@ -1,0 +1,92 @@
+timeline:
+# Slide 1: Title Card
+- start: 0
+  duration: 10
+  type: slide
+  slide: 1
+- start: 2.0
+  dur: 4.74
+  audio: assets/speech/cap_00.mp3
+  cc: Welcome to the Declarative Web Presentation Engine showcase.
+  speaker: Presenter
+
+# Slide 2: Feature Matrix & CSS Class Animation
+- start: 10
+  duration: 20
+  type: slide
+  slide: 2
+- start: 10.0
+  dur: 6.42
+  audio: assets/speech/cap_01.mp3
+  cc: All slide transitions, speech clips, and video modals are orchestrated via timeline.yaml.
+  speaker: Presenter
+- start: 16.0
+  type: class
+  target: "#card-engine"
+  action: add
+  class: active-focus
+  duration: 5.0
+
+# Slide 3: Centered Video Modal Zoom
+- start: 30
+  duration: 20
+  type: slide
+  slide: 3
+- start: 30.0
+  dur: 8.5
+  audio: assets/speech/cap_02.mp3
+  cc: Watch as the engine overlays centered video modals and speech captions in real-time.
+  speaker: Presenter
+- start: 34
+  duration: 12
+  type: video
+  position: center
+  crop: crop=1241:1217:1313:0
+  seek: 45
+  speed: 2.0
+  playing: true
+
+# Slide 4: Side-Panel Video & Toast Notification
+- start: 50
+  duration: 20
+  type: slide
+  slide: 4
+- start: 50.0
+  duration: 15
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 75
+  speed: 1.5
+  playing: true
+- start: 52.0
+  type: toast
+  text: "Agentic subagent spawned: verifying live UI layout..."
+  duration: 4.0
+- start: 50.0
+  dur: 8.0
+  audio: assets/speech/cap_03.mp3
+  cc: Side-panel videos allow real-time watch-along demos while slide content remains visible.
+  speaker: Presenter
+
+# Slide 5: Closed Caption & Speech Alignment
+- start: 70
+  duration: 15
+  type: slide
+  slide: 5
+- start: 70.0
+  dur: 7.5
+  audio: assets/speech/cap_04.mp3
+  cc: Speech audio clips play seamlessly with zero-overlap buffer management.
+  speaker: Presenter
+
+# Slide 6: Outro & Takeaways
+- start: 85
+  duration: 15
+  type: slide
+  slide: 6
+- start: 85.0
+  dur: 6.0
+  audio: assets/speech/cap_05.mp3
+  cc: Clone engine/template/ into your new deck directory and start presenting!
+  speaker: Presenter

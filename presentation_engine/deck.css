@@ -1,0 +1,96 @@
+/* DWPE Template - Deck Layout & Component Overrides */
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.badge-pill {
+  background: rgba(66, 133, 244, 0.12);
+  color: var(--google-blue);
+  border: 1px solid rgba(66, 133, 244, 0.25);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: 3.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--slate-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.35rem;
+  color: var(--slate-400);
+  max-width: 720px;
+  line-height: 1.55;
+}
+
+.section-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--slate-100);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.card {
+  background: var(--surface-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: left;
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  background: var(--surface-card-hover);
+  border-color: var(--border-highlight);
+  transform: translateY(-2px);
+}
+
+.card.active-focus {
+  border-color: var(--google-green);
+  box-shadow: 0 0 20px rgba(52, 168, 83, 0.2);
+}
+
+.card-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  color: var(--google-blue);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: var(--slate-400);
+  line-height: 1.5;
+}
