@@ -34,8 +34,8 @@
 03:10 [SLIDE 7] Prompt Evolution: Multi-Step Steering (Side Panel 1.78x)
 03:10 SPEAK: In practice, I spend most of my time operating in multi-step feedback loops, actively steering models whenever they drift off course.
 03:25 SPEAK: Interactive steering loops provide engineers with tight quality feedback cycles, exercising precise control over topology, stack locks, and execution without sacrificing momentum.
-03:44 [VIDEO] Center Modal Splash - Cloud Run Live Deploy (2.0x speed)
-03:44 SPEAK: Let's check back in on our agent: with the app built and packaged, it's autonomously deploying to Cloud Run and validating live site health.
+03:56 [VIDEO] Center Modal Splash - Cloud Run Live Deploy (2.0x speed)
+03:56 SPEAK: Let's check back in on our agent: with the app built and packaged, it's autonomously deploying to Cloud Run and validating live site health.
 04:10 [SLIDE 8] Hackathon Guidance & Takeaways (Side Panel 2.0x)
 04:10 SPEAK: To wrap up with hackathon guidance, keep these three core principles in mind.
 04:16 SPEAK: First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous feedback loops.

@@ -491,8 +491,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (ev.type === 'slide' && ev.slide && isActive) {
           activeSlideNum = ev.slide;
           lastTransitionSecond = Math.max(lastTransitionSecond, ev.start);
-        } else if (ev.type === 'video' && ev.pos && isActive) {
-          activeVideoPos = ev.pos;
+        } else if (ev.type === 'video' && (ev.pos || ev.position) && isActive) {
+          activeVideoPos = ev.pos || ev.position;
           activeCropStr = ev.crop || '';
           activeVideoSpeed = ev.speed || 1.0;
           activeVideoPlaying = ev.playing !== undefined ? Boolean(ev.playing) : (activeVideoPos !== 'hidden');

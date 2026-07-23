@@ -312,7 +312,7 @@ timeline:
   audio: assets/speech/cap_22.mp3
   duration: 12.22
   end: 217.22
-- start: 224.0
+- start: 236.0
   dur: 8.18
   pos: hidden
   cc: 'Let''s check back in on our agent: with the app built and packaged, it''s autonomously
@@ -320,7 +320,7 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_23.mp3
   duration: 8.18
-  end: 232.18
+  end: 244.18
 - start: 236
   duration: 14
   type: video
