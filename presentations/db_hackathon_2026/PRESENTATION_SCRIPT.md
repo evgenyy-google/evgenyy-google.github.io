@@ -36,14 +36,14 @@
 03:25 SPEAK: Interactive steering loops provide engineers with tight quality feedback cycles, exercising precise control over topology, stack locks, and execution without sacrificing momentum.
 03:44 [VIDEO] Center Modal Splash - Cloud Run Live Deploy (2.0x speed)
 03:44 SPEAK: Let's check back in on our agent: with the app built and packaged, it's autonomously deploying to Cloud Run and validating live site health.
-03:58 [SLIDE 8] Hackathon Guidance & Takeaways (Side Panel 2.0x)
-03:58 SPEAK: To wrap up with hackathon guidance, keep these three core principles in mind.
-04:04 SPEAK: First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous feedback loops.
-04:13 [VIDEO] Side Panel Pause (1.0x frame hold)
-04:13 SPEAK: Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible drift in team projects.
-04:22 SPEAK: Third, autonomy: Empower agents with context to make decisions, sharing progress via Markdown artifacts or real-time chats.
-04:30 [VIDEO] Center Modal Splash - Walkthrough Artifact (1.5x speed)
-04:30 SPEAK: Let's see the final outcome of what our agent accomplished: here is the live walkthrough artifact it generated—documenting every step from PRD to production with full evidence collected along the way!
-04:38 [SLIDE 9] Outro & Hackathon Farewell (Video Hidden)
-04:38 SPEAK: Thank you for listening! Go build something extraordinary and have an amazing hackathon!
+04:10 [SLIDE 8] Hackathon Guidance & Takeaways (Side Panel 2.0x)
+04:10 SPEAK: To wrap up with hackathon guidance, keep these three core principles in mind.
+04:16 SPEAK: First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous feedback loops.
+04:24 [VIDEO] Side Panel Pause (1.0x frame hold)
+04:24 SPEAK: Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible drift in team projects.
+04:32 SPEAK: Third, autonomy: Empower agents with context to make decisions, sharing progress via Markdown artifacts or real-time chats.
+04:40 [VIDEO] Center Modal Splash - Walkthrough Artifact (1.5x speed)
+04:40 SPEAK: Let's see the final outcome of what our agent accomplished: here is the live walkthrough artifact it generated—documenting every step from PRD to production with full evidence collected along the way!
+04:50 [SLIDE 9] Outro & Hackathon Farewell (Video Hidden)
+04:50 SPEAK: Thank you for listening! Go build something extraordinary and have an amazing hackathon!
 ```
