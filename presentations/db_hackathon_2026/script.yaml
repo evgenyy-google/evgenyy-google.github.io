@@ -78,14 +78,14 @@ timeline:
   speed: 1.0
   playing: true
 - start: 33.0
-  dur: 8.3
+  dur: 7.78
   pos: hidden
-  cc: Here I am asking Antigravity to build a complete 2-tier application—and we'll
+  cc: Here I am asking Antigravity to build a complete 2-tier application, and we'll
     keep an eye on how it's doing throughout our presentation.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_05.mp3
-  duration: 8.3
-  end: 41.3
+  duration: 7.78
+  end: 40.78
 - start: 34
   duration: 16
   type: video
@@ -94,7 +94,7 @@ timeline:
   seek: 4
   speed: 2.0
   playing: true
-- start: 41.3
+- start: 40.8
   dur: 8.58
   pos: hidden
   cc: Once submitted, the agent will process our prompt, formulate an implementation
@@ -102,7 +102,7 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_06.mp3
   duration: 8.58
-  end: 49.88
+  end: 49.38
 - start: 50
   duration: 25
   type: video
@@ -393,15 +393,15 @@ timeline:
   speed: 1.5
   playing: true
 - start: 282.0
-  dur: 12.3
+  dur: 11.98
   pos: hidden
   cc: 'Let''s see the final outcome of what our agent accomplished: here is the live
-    walkthrough artifact it generated—documenting every step from PRD to production
+    walkthrough artifact it generated, documenting every step from PRD to production
     with full evidence collected along the way!'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_28.mp3
-  duration: 12.3
-  end: 294.3
+  duration: 11.98
+  end: 293.98
 - start: 290
   duration: 10
   type: slide
@@ -413,7 +413,7 @@ timeline:
   seek: 430
   speed: 1.0
   playing: false
-- start: 294.3
+- start: 294.0
   dur: 5.86
   pos: hidden
   cc: Thank you for listening! Go build something extraordinary and have an amazing
@@ -421,4 +421,4 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_29.mp3
   duration: 5.86
-  end: 300.16
+  end: 299.86

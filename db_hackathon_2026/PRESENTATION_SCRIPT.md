@@ -9,7 +9,7 @@
 00:15 SPEAK: With years of experience in reliability, balancing fast velocity with mission-critical systems.
 00:22 SPEAK: Today's goal: Maximize hackathon velocity through agentic workflows while sustaining peak productivity.
 00:30 [SLIDE 3] Product Surfaces & Demo Start (Center Modal Zoom)
-00:30 SPEAK: Here I am asking Antigravity to build a complete 2-tier application—and we'll keep an eye on how it's doing throughout our presentation.
+00:30 SPEAK: Here I am asking Antigravity to build a complete 2-tier application, and we'll keep an eye on how it's doing throughout our presentation.
 00:34 [VIDEO] Zoomed prompt fast-forward typing (2.0x speed)
 00:40 SPEAK: Once submitted, the agent will process our prompt, formulate an implementation plan, and execute tasks autonomously in the background.
 00:50 [VIDEO] Side Panel Block 1 (1.5x speed)
@@ -43,7 +43,7 @@
 04:24 SPEAK: Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible drift in team projects.
 04:32 SPEAK: Third, autonomy: Empower agents with context to make decisions, sharing progress via Markdown artifacts or real-time chats.
 04:40 [VIDEO] Center Modal Splash - Walkthrough Artifact (1.5x speed)
-04:40 SPEAK: Let's see the final outcome of what our agent accomplished: here is the live walkthrough artifact it generated—documenting every step from PRD to production with full evidence collected along the way!
+04:40 SPEAK: Let's see the final outcome of what our agent accomplished: here is the live walkthrough artifact it generated, documenting every step from PRD to production with full evidence collected along the way!
 04:50 [SLIDE 9] Outro & Hackathon Farewell (Video Hidden)
 04:50 SPEAK: Thank you for listening! Go build something extraordinary and have an amazing hackathon!
 ```
