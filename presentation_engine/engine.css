@@ -163,45 +163,38 @@ slide.active {
   display: none;
 }
 
-/* Closed Caption Subtitle Card */
+/* Closed Captions (CC Subtitles) Overlay */
 #cc-overlay {
   position: fixed;
-  bottom: 80px;
+  bottom: 85px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
-  transition: opacity 0.3s ease;
+  z-index: 150;
+  max-width: 90vw;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
 #cc-overlay.cc-hidden {
   opacity: 0;
-  pointer-events: none;
-}
-
-.cc-card {
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 30px;
-  padding: 10px 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-  max-width: 80vw;
 }
 
 #cc-speaker {
-  color: var(--google-blue);
-  font-weight: 700;
-  font-size: 0.95rem;
-  white-space: nowrap;
+  display: none;
 }
 
 #cc-text {
-  color: var(--text-main);
-  font-size: 1.05rem;
-  line-height: 1.4;
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.35;
+  padding: 0;
+  letter-spacing: 0.2px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.98), 0 0 8px rgba(0, 0, 0, 0.95);
 }
 
 /* Toast Floating Status Badge */
