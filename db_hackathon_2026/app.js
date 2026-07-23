@@ -91,8 +91,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     // Sort timeline events strictly by start second
     timelineEvents.sort((a, b) => a.start - b.start);
+
+    // Preload All Speech Audio Chunks into Memory Blob URLs for Instant Zero-Lag Playback
+    preloadAllSpeechAudioInMemory();
   } catch (e) {
     console.warn('Failed to load script.yaml, using fallback timeline', e);
+  }
+
+  const speechAudioCache = new Map();
+
+  async function preloadAllSpeechAudioInMemory() {
+    const audioEvents = timelineEvents.filter(ev => ev.audio);
+    console.log(`Preloading ${audioEvents.length} speech audio chunks into memory blob URLs...`);
+    const promises = audioEvents.map(async (ev) => {
+      try {
+        const res = await fetch(ev.audio);
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const audio = new Audio(blobUrl);
+        audio.preload = 'auto';
+        speechAudioCache.set(ev.audio, audio);
+      } catch (err) {
+        console.warn('Speech audio preload fallback:', ev.audio, err);
+        const audio = new Audio(ev.audio);
+        audio.preload = 'auto';
+        speechAudioCache.set(ev.audio, audio);
+      }
+    });
+    await Promise.allSettled(promises);
+    console.log(`Preloaded ${speechAudioCache.size} speech audio chunks into memory.`);
   }
 
   // Initialize Responsive 1080p Canvas Scaling
@@ -414,7 +441,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         currentSpeechAudio.pause();
       }
       currentSpeechPath = activeAudioPath;
-      currentSpeechAudio = new Audio(activeAudioPath);
+      currentSpeechAudio = speechAudioCache.get(activeAudioPath) || new Audio(activeAudioPath);
       currentSpeechAudio.muted = isAudioMuted;
       currentSpeechAudio.playbackRate = playbackSpeed;
       const offset = Math.max(0, second - activeAudioStart);
