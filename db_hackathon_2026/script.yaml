@@ -109,7 +109,8 @@ timeline:
 - start: 75
   duration: 10
   type: caption
-  text: Here is the general architecture of coding agent harnesses.
+  text: 'Now moving to architecture: here is the general structure of coding agent
+    harnesses.'
 - start: 80
   duration: 10
   type: caption
@@ -158,7 +159,7 @@ timeline:
 - start: 120
   duration: 13
   type: caption
-  text: Framing our thinking with traditional 4-tier engineering from product spec
+  text: Now let's examine the 4-tier model. Framing our thinking from product spec
     to implementation, with coding agents we must decide our trade-offs between speed
     and control.
 - start: 134
@@ -191,8 +192,8 @@ timeline:
 - start: 170
   duration: 10
   type: caption
-  text: 'How prompt steering evolves: Basic prompts allow fast prototyping, but explicit
-    stack constraints lock architecture early.'
+  text: 'Next, let me show how prompt steering evolves: Basic prompts allow fast prototyping,
+    but explicit stack constraints lock architecture early.'
 - start: 180
   duration: 10
   type: caption
@@ -265,18 +266,17 @@ timeline:
 - start: 250
   duration: 15
   type: caption
+  text: To wrap up with hackathon guidance, keep these three core principles in mind.
+- start: 256
+  duration: 15
+  type: caption
   text: 'First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous
     feedback loops.'
-- start: 260
-  duration: 15
+- start: 265
+  duration: 10
   type: caption
   text: 'Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible
     drift in team projects.'
-- start: 270
-  duration: 10
-  type: caption
-  text: 'Third, autonomy: Empower agents with context to make decisions, sharing progress
-    via Markdown artifacts or real-time chats.'
 - start: 290
   duration: 10
   type: slide
@@ -288,8 +288,8 @@ timeline:
   seek: 430
   speed: 1.0
   playing: false
-- start: 280
+- start: 274
   duration: 10
   type: caption
-  text: Here is the live walkthrough artifact, documenting every step from PRD to
-    production with screenshots and evidence collected along the way!
+  text: 'Third, autonomy: Empower agents with context to make decisions, sharing progress
+    via Markdown artifacts or real-time chats.'
