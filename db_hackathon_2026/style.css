@@ -576,9 +576,9 @@ p, li {
 /* Footer Navigation */
 .footer-nav {
   position: absolute;
-  bottom: 30px;
-  left: 80px;
-  right: 80px;
+  bottom: 24px;
+  left: 40px;
+  right: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -593,9 +593,10 @@ p, li {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   opacity: 1;
   transition: opacity 0.4s ease;
+  white-space: nowrap;
 }
 
 .footer-nav:hover #nav-hints,
@@ -608,17 +609,21 @@ body.recording-active #nav-hints {
   background: rgba(30, 41, 59, 0.85);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 16px;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
   gap: 6px;
+  line-height: 1.2;
 }
 
 #play-pause-btn {

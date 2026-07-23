@@ -13,25 +13,29 @@ timeline:
   speed: 1.0
   playing: false
 - start: 0
-  duration: 10
+  duration: 4.1
   type: caption
   text: 'Welcome to Antigravity: Coding Agents in Action.'
+  dur: 4.1
 - start: 0
-  dur: 4
+  dur: 4.94
   pos: hidden
   cc: 'Welcome to Antigravity: Coding Agents in Action.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_00.mp3
+  duration: 4.94
 - start: 4
-  duration: 5
+  duration: 6.3
   type: caption
   text: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
+  dur: 6.3
 - start: 4
-  dur: 4
+  dur: 7.14
   pos: hidden
   cc: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_01.mp3
+  duration: 7.14
 - start: 10
   duration: 20
   type: slide
@@ -44,41 +48,47 @@ timeline:
   speed: 1.0
   playing: false
 - start: 10
-  duration: 5
+  duration: 6.62
   type: caption
   text: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots
     at top speed.
+  dur: 6.62
 - start: 10
-  dur: 4
+  dur: 5.98
   pos: hidden
   cc: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots
     at top speed.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_02.mp3
+  duration: 5.98
 - start: 15
-  duration: 5
+  duration: 6.46
   type: caption
   text: '8+ years leading Bloomberg global SRE teams: balancing fast-paced velocity
     with mission-critical reliability.'
+  dur: 6.46
 - start: 15
-  dur: 4
+  dur: 8.1
   pos: hidden
   cc: '8+ years leading Bloomberg global SRE teams: balancing fast-paced velocity
     with mission-critical reliability.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_03.mp3
+  duration: 8.1
 - start: 22
-  duration: 5
+  duration: 8.1
   type: caption
   text: 'Today''s goal: Maximize hackathon velocity through agentic workflows while
     sustaining peak productivity.'
+  dur: 8.1
 - start: 22
-  dur: 4
+  dur: 5.42
   pos: hidden
   cc: 'Today''s goal: Maximize hackathon velocity through agentic workflows while
     sustaining peak productivity.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_04.mp3
+  duration: 5.42
 - start: 30
   duration: 45
   type: slide
@@ -92,17 +102,19 @@ timeline:
   speed: 1.0
   playing: true
 - start: 30
-  duration: 10
+  duration: 7.22
   type: caption
   text: Here's Antigravity in action! We ask the agent to build and deploy a complete
     full-stack application.
+  dur: 7.22
 - start: 30
-  dur: 4
+  dur: 5.46
   pos: hidden
   cc: Here's Antigravity in action! We ask the agent to build and deploy a complete
     full-stack application.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_05.mp3
+  duration: 5.46
 - start: 34
   duration: 16
   type: video
@@ -112,17 +124,19 @@ timeline:
   speed: 2.0
   playing: true
 - start: 40
-  duration: 10
+  duration: 7.06
   type: caption
   text: Once submitted, the agent will process the prompt, formulate an implementation
     plan, and execute tasks autonomously.
+  dur: 7.06
 - start: 40
-  dur: 4
+  dur: 6.86
   pos: hidden
   cc: Once submitted, the agent will process the prompt, formulate an implementation
     plan, and execute tasks autonomously.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_06.mp3
+  duration: 6.86
 - start: 50
   duration: 25
   type: video
@@ -132,29 +146,33 @@ timeline:
   speed: 1.5
   playing: true
 - start: 50
-  duration: 12
+  duration: 6.62
   type: caption
   text: 'Antigravity provides four product surfaces to fit any workflow: Antigravity
     2.0, CLI, IDE, and Python SDK.'
+  dur: 6.62
 - start: 50
-  dur: 4
+  dur: 10.22
   pos: hidden
   cc: 'Antigravity provides four product surfaces to fit any workflow: Antigravity
     2.0, CLI, IDE, and Python SDK.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_07.mp3
+  duration: 10.22
 - start: 62
-  duration: 13
+  duration: 7.5
   type: caption
   text: Each surface is powered by the same underlying harness, giving developers
     complete flexibility without sacrificing workflow context.
+  dur: 7.5
 - start: 62
-  dur: 4
+  dur: 7.26
   pos: hidden
   cc: Each surface is powered by the same underlying harness, giving developers complete
     flexibility without sacrificing workflow context.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_08.mp3
+  duration: 7.26
 - start: 75
   duration: 50
   type: slide
@@ -168,76 +186,88 @@ timeline:
   speed: 1.5
   playing: true
 - start: 75
-  duration: 10
+  duration: 5.34
   type: caption
   text: 'Now moving to architecture: here is the general structure of coding agent
     harnesses.'
+  dur: 5.34
 - start: 75
-  dur: 4
+  dur: 9.14
   pos: hidden
   cc: 'Now moving to architecture: here is the general structure of coding agent harnesses.'
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_09.mp3
+  duration: 9.14
 - start: 80
-  duration: 10
+  duration: 6.3
   type: caption
   text: While all Antigravity surfaces share this harness, modern tools like Claude
     or Codex follow similar core patterns.
+  dur: 6.3
 - start: 80
-  dur: 4
+  dur: 7.14
   pos: hidden
   cc: While all Antigravity surfaces share this harness, modern tools like Claude
     or Codex follow similar core patterns.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_10.mp3
+  duration: 7.14
 - start: 88
-  duration: 7
+  duration: 10.1
   type: caption
   text: At the core, an autonomous ReAct loop drives execution, reasoning, and iterative
     planning.
+  dur: 10.1
 - start: 88
-  dur: 4
+  dur: 7.38
   pos: hidden
   cc: At the core, an autonomous ReAct loop drives execution, reasoning, and iterative
     planning.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_11.mp3
+  duration: 7.38
 - start: 95
-  duration: 8
+  duration: 4.46
   type: caption
   text: Context engineering enables user-defined rules, skill loading, sub-agent dispatching,
     and automatic context compaction.
+  dur: 4.46
 - start: 95
-  dur: 4
+  dur: 6.18
   pos: hidden
   cc: Context engineering enables user-defined rules, skill loading, sub-agent dispatching,
     and automatic context compaction.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_12.mp3
+  duration: 6.18
 - start: 103
-  duration: 7
+  duration: 7.74
   type: caption
   text: The tooling layer provides file system access, shell execution, local MCP
     servers, and external API integrations.
+  dur: 7.74
 - start: 103
-  dur: 4
+  dur: 7.82
   pos: hidden
   cc: The tooling layer provides file system access, shell execution, local MCP servers,
     and external API integrations.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_13.mp3
+  duration: 7.82
 - start: 111
-  duration: 8
+  duration: 7.86
   type: caption
   text: Everything is ultimately powered by latest Gemini models, driving reasoning
     and tool execution at every step.
+  dur: 7.86
 - start: 111
-  dur: 4
+  dur: 5.02
   pos: hidden
   cc: Everything is ultimately powered by latest Gemini models, driving reasoning
     and tool execution at every step.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_14.mp3
+  duration: 5.02
 - start: 120
   duration: 50
   type: slide

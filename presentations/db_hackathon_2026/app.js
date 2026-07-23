@@ -262,6 +262,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Seek presentation state directly to target second timestamp
   function seekToSecond(second) {
+    // Abort and reset any active speech audio on manual transition switch
+    if (currentSpeechAudio) {
+      currentSpeechAudio.pause();
+      try { currentSpeechAudio.currentTime = 0; } catch (e) {}
+      currentSpeechAudio = null;
+      currentSpeechPath = null;
+    }
+
     second = Math.max(0, Math.min(TOTAL_DURATION, second));
     elapsedTime = second;
     currentExactSecond = elapsedTime;
@@ -427,18 +435,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Evaluate state of all event channels (slide, video, toast, cc, element) at current second
-  // Sync / Play Speech Chunk Audio Event
+  // Sync / Play Speech Chunk Audio Event (Let previous clip finish out fully; drop next clip if previous is still speaking)
   function syncSpeechAudio(activeAudioPath, second, activeAudioStart) {
     if (isPaused || isAudioMuted || !activeAudioPath) {
-      if (currentSpeechAudio && !currentSpeechAudio.paused) {
-        currentSpeechAudio.pause();
-      }
       return;
     }
 
     if (currentSpeechPath !== activeAudioPath) {
-      if (currentSpeechAudio) {
-        currentSpeechAudio.pause();
+      // If previous clip is still speaking (not ended & not paused), let it finish out and drop the new clip
+      if (currentSpeechAudio && !currentSpeechAudio.ended && !currentSpeechAudio.paused && currentSpeechAudio.currentTime > 0) {
+        return;
       }
       currentSpeechPath = activeAudioPath;
       currentSpeechAudio = speechAudioCache.get(activeAudioPath) || new Audio(activeAudioPath);
@@ -452,7 +458,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (currentSpeechAudio) {
       currentSpeechAudio.muted = isAudioMuted;
       currentSpeechAudio.playbackRate = playbackSpeed;
-      if (currentSpeechAudio.paused && !isPaused && !isAudioMuted) {
+      if (currentSpeechAudio.paused && !isPaused && !isAudioMuted && !currentSpeechAudio.ended) {
         currentSpeechAudio.play().catch(() => {});
       }
     }
