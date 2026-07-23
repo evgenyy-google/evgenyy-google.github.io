@@ -21,13 +21,13 @@ timeline:
   duration: 4.54
   end: 6.54
 - start: 6.5
-  dur: 5.62
+  dur: 5.46
   pos: hidden
   cc: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_01.mp3
-  duration: 5.62
-  end: 12.12
+  duration: 5.46
+  end: 11.96
 - start: 10
   duration: 20
   type: slide
