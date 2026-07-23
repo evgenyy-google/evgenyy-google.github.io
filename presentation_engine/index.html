@@ -22,7 +22,7 @@
     <div class="video-top-lockup">
       <span class="logo-badge">DWPE Core Showcase</span>
     </div>
-    <video id="demo-video" src="../db_hackathon_2026/assets/live_demo.mp4" muted playsinline></video>
+    <video id="demo-video" src="assets/demo_video.mp4" muted playsinline></video>
     <div id="video-speed-badge">1.0x</div>
   </div>
 
@@ -102,21 +102,30 @@
     </div>
   </div>
 
-  <!-- Minimalist Footer Navigation Bar -->
+  <!-- Full-Featured Footer Controls Bar -->
   <footer class="footer-nav">
-    <div class="footer-left">
-      <button id="btn-prev" class="control-btn" title="Previous Slide"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M15 18l-6-6 6-6"/></svg>Prev</button>
-      <button id="btn-play" class="control-btn" title="Play/Pause"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play</button>
-      <button id="btn-next" class="control-btn" title="Next Slide">Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg></button>
-      <span id="timer-count">0:00</span>
-    </div>
-    <div class="footer-center">
-      <div class="speed-slider-container">
-        <label for="speed-slider">Pace:</label>
-        <input type="range" id="speed-slider" min="0" max="8" value="2" step="1">
-        <span id="speed-val">1.0x</span>
+    <div class="logo-footer">DWPE Engine Showcase</div>
+    <div id="nav-hints" class="nav-hints">
+      <button id="prev-slide-btn" class="control-btn" title="Previous Slide (Left Arrow)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M15 18l-6-6 6-6"/></svg>Prev</button>
+      <button id="play-pause-btn" class="control-btn" title="Play/Pause (Space)"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play</button>
+      <button id="next-slide-btn" class="control-btn" title="Next Slide (Right Arrow)">Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg></button>
+
+      <!-- Inline Timer & Slide Count Indicator -->
+      <div id="timer-display" class="timer-display">
+        <span id="slide-info-text" style="color: var(--google-blue);">Slide 1/6</span>
+        <span class="timer-divider">•</span>
+        <span id="timer-count">0:00</span>
+        <div id="slide-progress-bar" class="slide-progress-bar"></div>
       </div>
+      <button id="cc-toggle-btn" class="control-btn active" title="Toggle Closed Captions (C)">CC Subtitles</button>
+      <button id="audio-mute-btn" class="control-btn active" title="Toggle Audio Speech (M)">🔊 Mute</button>
+      <div id="speed-control-container" class="speed-control-container">
+        <span class="speed-label">Speed: <strong id="speed-val" style="color: var(--google-blue);">1x</strong></span>
+        <input type="range" id="speed-slider" min="0" max="8" step="1" value="2" class="speed-slider">
+      </div>
+      <button id="record-btn" class="control-btn record-btn" title="Record Screen (R)">🔴 Record</button>
     </div>
+    <div id="slide-dots" class="slide-dots"></div>
   </footer>
 
   <!-- Shared Runtime Engine -->
