@@ -1,0 +1,295 @@
+totalDuration: 300
+videoTotalDuration: 431.86
+timeline:
+- start: 0
+  duration: 10
+  type: slide
+  slide: 1
+- start: 0
+  duration: 10
+  type: video
+  position: hidden
+  seek: 0
+  speed: 1.0
+  playing: false
+- start: 0
+  duration: 10
+  type: caption
+  text: 'Welcome to Antigravity: Coding Agents in Action.'
+- start: 10
+  duration: 20
+  type: slide
+  slide: 2
+- start: 10
+  duration: 20
+  type: video
+  position: hidden
+  seek: 0
+  speed: 1.0
+  playing: false
+- start: 3
+  duration: 5
+  type: caption
+  text: I'm Evgeny Yakimov, Staff Software Engineer at the Google Cloud CTO Office.
+- start: 10
+  duration: 5
+  type: caption
+  text: Vibe coder by design, harnessing GenAI to rapidly prototype customer AI pilots
+    at top speed.
+- start: 15
+  duration: 5
+  type: caption
+  text: '8+ years leading Bloomberg global SRE teams: balancing fast-paced velocity
+    with mission-critical reliability.'
+- start: 22
+  duration: 5
+  type: caption
+  text: 'Today''s goal: Maximize hackathon velocity through agentic workflows while
+    sustaining peak productivity.'
+- start: 30
+  duration: 45
+  type: slide
+  slide: 3
+- start: 30
+  duration: 4
+  type: video
+  position: center
+  crop: crop=840:240:220:380
+  seek: 0
+  speed: 1.0
+  playing: true
+- start: 34
+  duration: 16
+  type: video
+  position: center
+  crop: crop=840:240:220:380
+  seek: 4
+  speed: 2.0
+  playing: true
+- start: 50
+  duration: 25
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 38
+  speed: 1.5
+  playing: true
+- start: 30
+  duration: 10
+  type: caption
+  text: Here's Antigravity in action! We ask the agent to build and deploy a complete
+    full-stack application.
+- start: 40
+  duration: 10
+  type: caption
+  text: Once submitted, the agent will process the prompt, formulate an implementation
+    plan, and execute tasks autonomously.
+- start: 50
+  duration: 12
+  type: caption
+  text: 'Antigravity provides four product surfaces to fit any workflow: Antigravity
+    2.0, CLI (agy), IDE, and Python SDK.'
+- start: 62
+  duration: 13
+  type: caption
+  text: Each surface is powered by the same underlying harness, giving developers
+    complete flexibility without sacrificing workflow context.
+- start: 75
+  duration: 50
+  type: slide
+  slide: 4
+- start: 75
+  duration: 50
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 73
+  speed: 1.5
+  playing: true
+- start: 75
+  duration: 10
+  type: caption
+  text: Here is the general architecture of coding agent harnesses.
+- start: 80
+  duration: 10
+  type: caption
+  text: While all Antigravity surfaces share this harness, modern tools like Claude
+    or Codex follow similar core patterns.
+- start: 88
+  duration: 7
+  type: caption
+  text: At the core, an autonomous ReAct loop drives execution, reasoning, and iterative
+    planning.
+- start: 95
+  duration: 8
+  type: caption
+  text: Context engineering enables user-defined rules, skill loading, sub-agent dispatching,
+    and automatic context compaction.
+- start: 103
+  duration: 7
+  type: caption
+  text: The tooling layer provides file system access, shell execution, local MCP
+    servers, and external API integrations.
+- start: 111
+  duration: 8
+  type: caption
+  text: Everything is ultimately powered by latest Gemini models, driving reasoning
+    and tool execution at every step.
+- start: 120
+  duration: 50
+  type: slide
+  slide: 5
+- start: 120
+  duration: 40
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 138
+  speed: 1.5
+  playing: true
+- start: 160
+  duration: 10
+  type: video
+  position: center
+  crop: crop=1241:1217:1313:0
+  seek: 156
+  speed: 2.0
+  playing: true
+- start: 120
+  duration: 13
+  type: caption
+  text: Framing our thinking with traditional 4-tier engineering from product spec
+    to implementation, with coding agents we must decide our trade-offs between speed
+    and control.
+- start: 134
+  duration: 13
+  type: caption
+  text: Because models naturally jump across levels while making decisions, stay aware
+    of the active level to steer effectively.
+- start: 147
+  duration: 14
+  type: caption
+  text: 'Use two-way dialogue: TELL to lock constraints, and ASK to leverage model
+    expertise for new ideas and blind spots.'
+- start: 160
+  duration: 10
+  type: caption
+  text: With implementation finished, we can see the agent launching a subagent to
+    locally test the live app.
+- start: 170
+  duration: 20
+  type: slide
+  slide: 6
+- start: 170
+  duration: 20
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 185
+  speed: 4.3
+  playing: true
+- start: 170
+  duration: 10
+  type: caption
+  text: 'How prompt steering evolves: Basic prompts allow fast prototyping, but explicit
+    stack constraints lock architecture early.'
+- start: 180
+  duration: 10
+  type: caption
+  text: Locking tech stack contracts and interface rules upfront prevents chaotic
+    drift on fast-moving projects.
+- start: 190
+  duration: 60
+  type: slide
+  slide: 7
+- start: 190
+  duration: 46
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 292
+  speed: 1.78
+  playing: true
+- start: 236
+  duration: 14
+  type: video
+  position: center
+  crop: crop=1241:1217:1313:0
+  seek: 375
+  speed: 2.0
+  playing: true
+- start: 190
+  duration: 23
+  type: caption
+  text: In practice, I spend most of my time operating in multi-step feedback loops,
+    actively steering models whenever they drift off course.
+- start: 213
+  duration: 23
+  type: caption
+  text: Interactive steering loops provide engineers with tight quality feedback cycles,
+    exercising precise control over topology, stack locks, and execution without sacrificing
+    momentum.
+- start: 236
+  duration: 14
+  type: caption
+  text: With the app built and packaged, the agent autonomously handles deployment
+    and validates that the live production Cloud Run site is up.
+- start: 250
+  duration: 40
+  type: slide
+  slide: 8
+- start: 250
+  duration: 15
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 377
+  speed: 2.0
+  playing: true
+- start: 265
+  duration: 15
+  type: video
+  position: side-panel
+  crop: crop=724:1070:0:50
+  seek: 402
+  speed: 1.0
+  playing: false
+- start: 280
+  duration: 10
+  type: video
+  position: center
+  crop: crop=1276:1217:0:0
+  seek: 417
+  speed: 1.5
+  playing: true
+- start: 250
+  duration: 15
+  type: caption
+  text: 'First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous
+    feedback loops.'
+- start: 260
+  duration: 15
+  type: caption
+  text: 'Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible
+    drift in team projects.'
+- start: 270
+  duration: 10
+  type: caption
+  text: 'Third, autonomy: Empower agents with context to make decisions, sharing progress
+    via Markdown artifacts or real-time chats.'
+- start: 290
+  duration: 10
+  type: slide
+  slide: 9
+- start: 290
+  duration: 10
+  type: video
+  position: hidden
+  seek: 430
+  speed: 1.0
+  playing: false
+- start: 280
+  duration: 10
+  type: caption
+  text: Here is the live walkthrough artifact, documenting every step from PRD to
+    production with screenshots and evidence collected along the way!
