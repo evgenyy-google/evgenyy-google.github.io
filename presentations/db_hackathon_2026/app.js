@@ -645,10 +645,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.addEventListener('mousemove', revealControlsTemporarily);
 
-  // Speed Slider Listener with Fixed Steps [0.5, 0.75, 1, 1.5, 2, 3, 5]
-  const SPEED_STEPS = [0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0];
+  // Speed Slider Listener with Fixed Steps [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0]
+  const SPEED_STEPS = [0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0];
   function formatSpeedText(val) {
-    if (val === 0.75) return '0.75x';
+    if (val === 0.75 || val === 1.25 || val === 1.75 || val === 2.5) return `${val}x`;
     return (val % 1 === 0) ? `${val}x` : `${val.toFixed(1)}x`;
   }
 
