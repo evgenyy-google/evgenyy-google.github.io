@@ -302,7 +302,7 @@ timeline:
   audio: assets/speech/cap_21.mp3
   duration: 8.54
   end: 198.54
-- start: 213.0
+- start: 205.0
   dur: 12.22
   pos: hidden
   cc: Interactive steering loops provide engineers with tight quality feedback cycles,
@@ -311,7 +311,16 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_22.mp3
   duration: 12.22
-  end: 225.22
+  end: 217.22
+- start: 224.0
+  dur: 8.18
+  pos: hidden
+  cc: 'Let''s check back in on our agent: with the app built and packaged, it''s autonomously
+    deploying to Cloud Run and validating live site health.'
+  speaker: Evgeny Yakimov
+  audio: assets/speech/cap_23.mp3
+  duration: 8.18
+  end: 232.18
 - start: 236
   duration: 14
   type: video
@@ -320,15 +329,23 @@ timeline:
   seek: 375
   speed: 2.0
   playing: true
-- start: 236.0
-  dur: 8.18
+- start: 238.0
+  dur: 5.34
   pos: hidden
-  cc: 'Let''s check back in on our agent: with the app built and packaged, it''s autonomously
-    deploying to Cloud Run and validating live site health.'
+  cc: To wrap up with hackathon guidance, keep these three core principles in mind.
   speaker: Evgeny Yakimov
-  audio: assets/speech/cap_23.mp3
-  duration: 8.18
-  end: 244.18
+  audio: assets/speech/cap_24.mp3
+  duration: 5.34
+  end: 243.34
+- start: 244.0
+  dur: 6.98
+  pos: hidden
+  cc: 'First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous
+    feedback loops.'
+  speaker: Evgeny Yakimov
+  audio: assets/speech/cap_25.mp3
+  duration: 6.98
+  end: 250.98
 - start: 250
   duration: 40
   type: slide
@@ -341,23 +358,24 @@ timeline:
   seek: 377
   speed: 2.0
   playing: true
-- start: 250.0
-  dur: 5.34
+- start: 253.0
+  dur: 8.42
   pos: hidden
-  cc: To wrap up with hackathon guidance, keep these three core principles in mind.
+  cc: 'Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible
+    drift in team projects.'
   speaker: Evgeny Yakimov
-  audio: assets/speech/cap_24.mp3
-  duration: 5.34
-  end: 255.34
-- start: 256.0
-  dur: 6.98
+  audio: assets/speech/cap_26.mp3
+  duration: 8.42
+  end: 261.42
+- start: 262.0
+  dur: 9.58
   pos: hidden
-  cc: 'First, velocity: Leverage agents for rapid bootstrapping, establishing autonomous
-    feedback loops.'
+  cc: 'Third, autonomy: Empower agents with context to make decisions, sharing progress
+    via Markdown artifacts or real-time chats.'
   speaker: Evgeny Yakimov
-  audio: assets/speech/cap_25.mp3
-  duration: 6.98
-  end: 262.98
+  audio: assets/speech/cap_27.mp3
+  duration: 9.58
+  end: 271.58
 - start: 265
   duration: 15
   type: video
@@ -366,33 +384,7 @@ timeline:
   seek: 402
   speed: 1.0
   playing: false
-- start: 265.0
-  dur: 8.42
-  pos: hidden
-  cc: 'Second, cohesion: Lock contracts down to Tier 3 upfront, preventing incompatible
-    drift in team projects.'
-  speaker: Evgeny Yakimov
-  audio: assets/speech/cap_26.mp3
-  duration: 8.42
-  end: 273.42
-- start: 274.0
-  dur: 9.58
-  pos: hidden
-  cc: 'Third, autonomy: Empower agents with context to make decisions, sharing progress
-    via Markdown artifacts or real-time chats.'
-  speaker: Evgeny Yakimov
-  audio: assets/speech/cap_27.mp3
-  duration: 9.58
-  end: 283.58
-- start: 280
-  duration: 10
-  type: video
-  position: center
-  crop: crop=1276:1217:0:0
-  seek: 417
-  speed: 1.5
-  playing: true
-- start: 283.6
+- start: 271.6
   dur: 12.3
   pos: hidden
   cc: 'Let''s see the final outcome of what our agent accomplished: here is the live
@@ -401,7 +393,24 @@ timeline:
   speaker: Evgeny Yakimov
   audio: assets/speech/cap_28.mp3
   duration: 12.3
-  end: 295.9
+  end: 283.9
+- start: 280
+  duration: 10
+  type: video
+  position: center
+  crop: crop=1276:1217:0:0
+  seek: 417
+  speed: 1.5
+  playing: true
+- start: 283.9
+  dur: 5.86
+  pos: hidden
+  cc: Thank you for listening! Go build something extraordinary and have an amazing
+    hackathon!
+  speaker: Evgeny Yakimov
+  audio: assets/speech/cap_29.mp3
+  duration: 5.86
+  end: 289.76
 - start: 290
   duration: 10
   type: slide
@@ -413,12 +422,3 @@ timeline:
   seek: 430
   speed: 1.0
   playing: false
-- start: 295.9
-  dur: 5.86
-  pos: hidden
-  cc: Thank you for listening! Go build something extraordinary and have an amazing
-    hackathon!
-  speaker: Evgeny Yakimov
-  audio: assets/speech/cap_29.mp3
-  duration: 5.86
-  end: 301.76
