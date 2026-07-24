@@ -12,7 +12,7 @@
   let elapsedTime = 0;
   let isPaused = true;
   let playbackSpeed = 1.0;
-  let isAudioMuted = false;
+  let isAudioMuted = true; // Start Muted by default so user can unmute
   let ccEnabled = true;
   let isRecording = false;
   let mediaRecorder = null;
@@ -60,10 +60,14 @@
       console.warn('⚠️ DWPE Engine: Could not load timeline.yaml, running manual slide mode:', err);
     }
 
-    // Determine max duration from events
     if (timelineEvents.length > 0) {
       const maxEnd = Math.max(...timelineEvents.map(e => e.end || (e.start + (e.duration || e.dur || 0))));
       if (maxEnd > 0) TOTAL_DURATION = Math.ceil(maxEnd + 2);
+    }
+
+    if (audioMuteBtn) {
+      audioMuteBtn.classList.toggle('active', !isAudioMuted);
+      audioMuteBtn.innerHTML = isAudioMuted ? '🔇 Unmute' : '🔊 Mute';
     }
 
     generateSlideDots();
@@ -226,9 +230,9 @@
     else seekToSecond(0);
   }
 
-  // Speech Audio Playback Sync
+  // Speech Audio Playback Sync (BOUND STRICTLY TO MUTE/UNMUTE, DECOUPLED FROM PLAY/PAUSE)
   function syncSpeechAudio(activeAudioPath, second, activeAudioStart) {
-    if (isPaused || isAudioMuted || !activeAudioPath) {
+    if (isAudioMuted || !activeAudioPath) {
       if (currentSpeechAudio && !currentSpeechAudio.paused) {
         currentSpeechAudio.pause();
       }
@@ -247,7 +251,7 @@
     } else if (currentSpeechAudio) {
       currentSpeechAudio.muted = isAudioMuted;
       currentSpeechAudio.playbackRate = playbackSpeed;
-      if (currentSpeechAudio.paused && !isPaused && !isAudioMuted && !currentSpeechAudio.ended) {
+      if (currentSpeechAudio.paused && !isAudioMuted && !currentSpeechAudio.ended) {
         const offset = Math.max(0, second - activeAudioStart);
         try {
           if (Math.abs(currentSpeechAudio.currentTime - offset) > 0.3) {
@@ -326,19 +330,27 @@
     let activeAudioPath = null;
     let activeAudioStart = -1;
 
-    // 1. Pure deterministic evaluate of declarative CSS class rules
+    // Determine target slide num first (last slide event where second >= start)
+    for (let ev of timelineEvents) {
+      if (ev.type === 'slide' && ev.slide && second >= ev.start) {
+        activeSlideNum = ev.slide;
+      }
+    }
+    const bounds = getSlideBounds(activeSlideNum);
+
+    // 1. Evaluate declarative CSS class rules
+    // When PAUSED (isPaused == true), events that started remain active indefinitely without auto-expiring at end
     timelineEvents.forEach(ev => {
       if (ev.type === 'class' && ev.target && ev.class) {
         const duration = ev.duration || ev.dur || 5;
         const evEnd = ev.end || (ev.start + duration);
-        const isActive = second >= ev.start && second < evEnd;
+        const isActive = second >= ev.start && (isPaused ? (second <= bounds.end + 2) : second < evEnd);
         const targetEl = document.querySelector(ev.target);
         if (targetEl) {
           if (isActive) {
             if (ev.action === 'remove') targetEl.classList.remove(ev.class);
             else targetEl.classList.add(ev.class);
           } else {
-            // Revert when leaving window forward or seeking backward
             if (ev.action === 'remove') targetEl.classList.add(ev.class);
             else targetEl.classList.remove(ev.class);
           }
@@ -350,17 +362,19 @@
     for (let ev of timelineEvents) {
       const duration = ev.duration || ev.dur || 0;
       const evEnd = ev.end || (ev.start + duration);
-      const isActive = second >= ev.start && (duration || ev.end ? second < evEnd : true);
+      // When PAUSED, duration-bound transitions (subtitles, video modals, toasts) do NOT auto-expire
+      const isActive = second >= ev.start && (isPaused ? (second <= bounds.end + 2) : (duration || ev.end ? second < evEnd : true));
 
-      if (ev.audio && second >= ev.start && (evEnd ? second < evEnd : true)) {
-        activeAudioPath = ev.audio;
-        activeAudioStart = ev.start;
+      if (ev.audio && second >= ev.start) {
+        // Find latest audio chunk that started at or before current second
+        if (activeAudioStart < ev.start) {
+          activeAudioPath = ev.audio;
+          activeAudioStart = ev.start;
+        }
       }
 
       if (second >= ev.start) {
-        if (ev.type === 'slide' && ev.slide && isActive) {
-          activeSlideNum = ev.slide;
-        } else if (ev.type === 'video' && (ev.pos || ev.position) && isActive) {
+        if (ev.type === 'video' && (ev.pos || ev.position) && isActive) {
           activeVideoPos = ev.pos || ev.position;
           activeCropStr = ev.crop || '';
           activeVideoSpeed = ev.speed || 1.0;
@@ -369,20 +383,22 @@
         }
       }
 
-      // Closed Caption Subtitles
-      if (ev.cc && isActive) {
-        activeCcSpeaker = ev.speaker || 'Presenter';
-        activeCcText = ev.cc;
+      // Closed Caption Subtitles: when paused, subtitles stay on as long as speech chunk started
+      if (ev.cc && second >= ev.start && (isPaused ? true : (evEnd ? second < evEnd : true))) {
+        if (activeAudioStart <= ev.start || activeCcText === '') {
+          activeCcSpeaker = ev.speaker || 'Presenter';
+          activeCcText = ev.cc;
+        }
       }
     }
 
-    // Sync speech audio playback
+    // Sync speech audio playback (unmuted audio plays regardless of play/pause state)
     syncSpeechAudio(activeAudioPath, second, activeAudioStart);
 
     // Apply Video Container Position Class & Focal Crop
     updateVideoLayoutAndCrop(activeVideoPos, activeCropStr, activeVideoSpeed);
 
-    // Sync Video element playing state
+    // Sync Video element playing state (video animation plays only when timeline is active play mode)
     if (demoVideo && demoVideo.readyState >= 2) {
       if (activeVideoPos !== 'hidden' && !isPaused) {
         demoVideo.playbackRate = activeVideoSpeed * playbackSpeed;
@@ -431,7 +447,6 @@
       slideInfoText.textContent = `Slide ${activeSlideNum}/${slideElements.length}`;
     }
 
-    const bounds = getSlideBounds(activeSlideNum);
     const slideElapsed = Math.max(0, second - bounds.start);
     if (slideProgressBar) {
       const percent = Math.min(100, Math.max(0, (slideElapsed / bounds.duration) * 100));
@@ -488,9 +503,7 @@
       if (demoVideo && !demoVideo.paused) {
         try { demoVideo.pause(); } catch (e) {}
       }
-      if (currentSpeechAudio && !currentSpeechAudio.paused) {
-        try { currentSpeechAudio.currentTime = 0; currentSpeechAudio.pause(); } catch (e) {}
-      }
+      evaluateTimelineState(currentExactSecond);
     } else {
       startTimelineAnimation();
       if (demoVideo && demoVideo.readyState >= 2) {
@@ -560,11 +573,7 @@
         isAudioMuted = !isAudioMuted;
         audioMuteBtn.classList.toggle('active', !isAudioMuted);
         audioMuteBtn.innerHTML = isAudioMuted ? '🔇 Unmute' : '🔊 Mute';
-        if (currentSpeechAudio) {
-          currentSpeechAudio.muted = isAudioMuted;
-          if (isAudioMuted) currentSpeechAudio.pause();
-          else if (!isPaused) currentSpeechAudio.play().catch(() => {});
-        }
+        evaluateTimelineState(currentExactSecond);
       });
     }
 
