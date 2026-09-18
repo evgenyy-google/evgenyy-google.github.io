@@ -21,13 +21,15 @@
   --surface-card: rgba(30, 41, 59, 0.75);
   --surface-card-hover: rgba(51, 65, 85, 0.85);
   --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.12);
   --border-highlight: rgba(66, 133, 244, 0.4);
   --text-main: var(--slate-100);
+  --text-primary: var(--slate-100);
   --text-muted: var(--slate-400);
 
   --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Reset & Root Canvas Setup */
@@ -41,19 +43,36 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--surface-bg);
+  background-color: #05080f;
   color: var(--text-main);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 16:9 Fixed Aspect Stage Container (1920x1080 Base Coordinates) */
+.stage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background: radial-gradient(circle at 50% 0%, rgba(66, 133, 244, 0.1) 0%, var(--surface-bg) 70%);
+  overflow: hidden;
+  transform-origin: center center;
+  flex-shrink: 0;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
 }
 
 /* Canonical Custom Web Tags */
 slides {
   display: block;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
+  z-index: 10;
 }
 
 slide {
@@ -74,76 +93,73 @@ slide.active {
 
 /* Video Backdrop & Modal Overlay Modes */
 #video-container {
-  position: fixed;
-  inset: 0;
-  z-index: 5;
-  transition: var(--transition-smooth);
-  overflow: hidden;
+  position: absolute;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+  border-radius: 16px;
+  background: var(--slate-900);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.82), 0 0 0 1.5px var(--border-highlight);
 }
 
 #video-container.video-pos-hidden {
   opacity: 0;
   pointer-events: none;
+  display: none;
 }
 
-#video-container.video-pos-center {
-  opacity: 1;
-  top: 50%;
-  left: 50%;
-  width: 75vw;
-  height: 72vh;
-  transform: translate(-50%, -50%);
-  border-radius: 16px;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--border-highlight);
-  z-index: 50;
-  background: var(--slate-900);
-}
-
+#video-container.video-pos-center,
 #video-container.video-pos-side-panel {
   opacity: 1;
-  top: 90px;
-  right: 40px;
-  width: 44vw;
-  height: 76vh;
-  border-radius: 14px;
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  z-index: 40;
+  pointer-events: auto;
+  display: block;
+}
+
+.video-crop-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #000;
 }
 
 #demo-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
+  position: absolute;
+  max-width: none;
+  max-height: none;
+  object-fit: fill;
+  display: block;
 }
 
 /* Floating Top Lockup Badge Above Video Modal */
 .video-top-lockup {
   position: absolute;
-  top: -50px;
+  top: -46px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 60;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
 
-.video-pos-center .video-top-lockup {
+#video-container.video-pos-center .video-top-lockup,
+#video-container.video-pos-side-panel .video-top-lockup {
   opacity: 1;
 }
 
 .logo-badge {
-  background: var(--surface-card);
+  background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-highlight);
   color: var(--google-blue);
-  padding: 6px 16px;
+  padding: 6px 18px;
   border-radius: 20px;
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* Speed Multiplier Badge */
@@ -151,27 +167,182 @@ slide.active {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: rgba(15, 23, 42, 0.85);
+  z-index: 65;
+  background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(52, 168, 83, 0.45);
   color: var(--google-green);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 5px 12px;
+  border-radius: 8px;
   display: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+/* Native DOM Terminal Emulator Window */
+.terminal-window {
+  position: absolute;
+  z-index: 55;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.82), 0 0 0 1px rgba(255, 255, 255, 0.16);
+  background: #0a0e14;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease;
+}
+
+.terminal-window.terminal-pos-hidden {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.terminal-window.terminal-pos-center {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+  top: 165px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1360px;
+  height: 730px;
+}
+
+.terminal-window.terminal-pos-side-panel {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+  top: 140px;
+  right: 60px;
+  width: 940px;
+  height: 745px;
+}
+
+.terminal-header {
+  height: 42px;
+  min-height: 42px;
+  background: linear-gradient(180deg, #1a2130 0%, #131822 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  user-select: none;
+}
+
+.terminal-traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 140px;
+}
+
+.traffic-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ff5f56; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); }
+.dot-yellow { background: #ffbd2e; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); }
+.dot-green { background: #27c93f; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  letter-spacing: 0.02em;
+  text-align: center;
+  flex: 1;
+}
+
+.terminal-header-spacer {
+  width: 140px;
+}
+
+.terminal-viewport {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  background: #0a0e14;
+  overflow: hidden;
+}
+
+.term-dom-canvas {
+  width: 100%;
+  height: 100%;
+  padding: 16px 24px 20px 24px;
+  font-family: 'JetBrains Mono', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.18;
+  color: #e8eaed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  user-select: text;
+  font-variant-ligatures: none;
+  text-align: left;
+}
+
+.term-dom-canvas::-webkit-scrollbar {
+  display: none;
+}
+
+.term-line {
+  white-space: pre;
+  line-height: 1.18;
+}
+
+.term-cursor {
+  background-color: #cbd5e1;
+  color: #0a0e14 !important;
+}
+
+.ff-popup {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(52, 168, 83, 0.5);
+  color: #4ade80;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  z-index: 30;
+}
+
+.video-callout {
+  background: rgba(15, 23, 42, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  text-align: center;
+  letter-spacing: 0.03em;
 }
 
 /* Closed Captions (CC Subtitles) Overlay */
 #cc-overlay {
-  position: fixed;
-  bottom: 85px;
+  position: absolute;
+  bottom: 82px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 150;
-  max-width: 90vw;
-  width: 100%;
+  max-width: 1680px;
+  width: 90%;
   text-align: center;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -189,7 +360,7 @@ slide.active {
   display: inline-block;
   background: transparent;
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.35;
   padding: 0;
@@ -199,9 +370,9 @@ slide.active {
 
 /* Toast Floating Status Badge */
 #toast-overlay {
-  position: fixed;
-  top: 30px;
-  right: 30px;
+  position: absolute;
+  top: 32px;
+  right: 40px;
   z-index: 150;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -213,42 +384,80 @@ slide.active {
 }
 
 .toast-card {
-  background: rgba(30, 41, 59, 0.9);
+  background: rgba(30, 41, 59, 0.92);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-highlight);
   color: var(--slate-100);
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
 }
 
 .toast-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--google-green);
   box-shadow: 0 0 10px var(--google-green);
 }
 
+/* 3-2-1 Countdown Splash Overlay */
+.countdown-splash {
+  position: absolute;
+  inset: 0;
+  z-index: 500;
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.countdown-splash.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.countdown-number {
+  font-size: 9rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(66, 133, 244, 0.7);
+}
+
+.countdown-label {
+  margin-top: 16px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--slate-400);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /* Footer Controls Bar */
 .footer-nav {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 60px;
-  background: rgba(9, 13, 22, 0.95);
+  background: rgba(9, 13, 22, 0.92);
   backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 32px;
   z-index: 200;
   color: var(--text-muted);
   font-size: 0.9rem;
@@ -274,9 +483,10 @@ slide.active {
 
 .control-btn {
   background: rgba(30, 41, 59, 0.85);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 6px 14px;
+  height: 32px;
   border-radius: 16px;
   font-size: 0.82rem;
   font-weight: 600;
@@ -310,9 +520,10 @@ slide.active {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  height: 32px;
   background: rgba(30, 41, 59, 0.85);
-  border: 1px solid var(--border-subtle);
-  padding: 5px 14px;
+  border: 1px solid var(--border-color);
+  padding: 0 14px;
   border-radius: 16px;
   font-family: var(--font-mono);
   font-size: 0.82rem;
@@ -333,9 +544,9 @@ slide.active {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 2px;
+  height: 2.5px;
   width: 0%;
-  background: var(--google-blue);
+  background: linear-gradient(90deg, var(--google-blue), var(--google-green));
   transition: width 0.15s linear;
 }
 
@@ -343,9 +554,10 @@ slide.active {
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 32px;
   background: rgba(30, 41, 59, 0.85);
-  border: 1px solid var(--border-subtle);
-  padding: 4px 12px;
+  border: 1px solid var(--border-color);
+  padding: 0 12px;
   border-radius: 16px;
   font-size: 0.82rem;
 }
@@ -362,14 +574,264 @@ slide.active {
   cursor: pointer;
 }
 
+/* Split-Pill Recording Button & Configuration Popover */
+.record-btn-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  vertical-align: middle;
+  height: 32px;
+}
+
 .record-btn {
-  border-color: rgba(234, 67, 53, 0.4);
-  color: var(--google-red);
+  height: 32px !important;
+  border-top-left-radius: 16px !important;
+  border-bottom-left-radius: 16px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: none !important;
+  padding: 0 12px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  border-color: rgba(234, 67, 53, 0.4) !important;
+  color: #f87171 !important;
 }
 
 .record-btn:hover {
-  background: var(--google-red);
-  color: #fff;
+  background: var(--google-red) !important;
+  color: #fff !important;
+}
+
+.record-btn.recording {
+  background: rgba(239, 68, 68, 0.85) !important;
+  border-color: rgba(239, 68, 68, 1) !important;
+  color: #ffffff !important;
+}
+
+.record-config-btn {
+  height: 32px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 16px !important;
+  border-bottom-right-radius: 16px !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 0 9px !important;
+  font-size: 0.82rem !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  color: var(--text-primary) !important;
+}
+
+.record-config-btn:hover,
+.record-config-btn.active {
+  background: rgba(51, 65, 85, 0.95) !important;
+  color: #60a5fa !important;
+}
+
+.record-config-popover {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  right: 0;
+  width: 330px;
+  box-sizing: border-box;
+  white-space: normal !important;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(66, 133, 244, 0.2);
+  padding: 16px 18px;
+  z-index: 1200;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.98);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  text-align: left;
+  color: #f8fafc;
+}
+
+.record-config-popover.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.record-config-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.record-config-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #e2e8f0;
+  text-transform: uppercase;
+}
+
+.record-config-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.record-config-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.record-config-section {
+  margin-bottom: 14px;
+}
+
+.record-config-section:last-child {
+  margin-bottom: 0;
+}
+
+.record-config-section-title {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #60a5fa;
+  margin-bottom: 8px;
+}
+
+.record-config-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.record-radio-label,
+.record-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.83rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 5px 8px;
+  margin: 0 2px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.record-radio-label:hover,
+.record-checkbox-label:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.record-radio-label input[type="radio"],
+.record-checkbox-label input[type="checkbox"] {
+  accent-color: var(--google-blue);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.rec-popout-btn {
+  width: calc(100% - 8px) !important;
+  margin: 2px 4px 0 4px !important;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.18) !important;
+  border: 1px solid rgba(96, 165, 250, 0.45) !important;
+  color: #93c5fd !important;
+  padding: 8px 12px !important;
+  height: auto !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.rec-popout-btn:hover {
+  background: rgba(59, 130, 246, 0.32) !important;
+  border-color: #60a5fa !important;
+  color: #ffffff !important;
+}
+
+.rec-hint-text {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  line-height: 1.45;
+  margin-top: 7px;
+  padding: 0 4px;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.rec-popout-badge {
+  margin-left: auto;
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: #4ade80;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Active Recording & Playing State UI Rules (Zero Flash) */
+body.recording-active .logo-footer,
+body.recording-active .control-btn,
+body.recording-active .record-btn-wrapper,
+body.recording-active #speed-control-container,
+body.recording-active .slide-dots {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+body.recording-active .footer-nav {
+  background: transparent !important;
+  border-top: none !important;
+  backdrop-filter: none !important;
+}
+
+body.recording-active .timer-display,
+body.playing-active .timer-display,
+.timer-display.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Configurable Recording Overrides */
+body.recording-active.rec-hide-subtitles #cc-overlay,
+body.recording-active.rec-hide-subtitles .cc-overlay {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+body.recording-active.rec-hide-progress .timer-display,
+body.recording-active.rec-hide-progress #slide-progress-bar,
+body.recording-active.rec-hide-progress .slide-dots {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
 }
 
 .slide-dots {

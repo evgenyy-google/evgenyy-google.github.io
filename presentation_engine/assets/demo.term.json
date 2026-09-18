@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "title": "GCP Confidential Spaces - Oak Compliance Example",
+  "width": 148,
+  "height": 42,
+  "events": [
+    {
+      "time": 0.0,
+      "action": "clear"
+    },
+    {
+      "time": 0.0,
+      "action": "type",
+      "prompt": "\u001b[1;32m$\u001b[0m ",
+      "text": "head -n 7 sample_medical_records.csv | column -t -s, -o ' | '",
+      "duration": 1.6
+    },
+    {
+      "time": 2.0,
+      "action": "print",
+      "data": "patient_id   | visit_id           | visit_date | primary_condition | treatment      | systolic_bp | glucose_mg_dl | cholesterol_mg_dl | physician   | hospital\r\nEU-NE-001805 | V-EU-NE-001805-001 | 2024-08-20 | Routine checkup   | None           | 137         | 75            | 187               | Dr. Brown   | Amsterdam General Hospital\r\nEU-PO-000503 | V-EU-PO-000503-001 | 2025-05-03 | Routine checkup   | None           | 126         | 199           | 280               | Dr. Johnson | Unknown General Hospital\r\nEU-IT-000430 | V-EU-IT-000430-001 | 2024-06-13 | Hypertension      | Beta blockers  | 135         | 161           | 250               | Dr. Davis   | Naples General Hospital\r\nEU-IT-001335 | V-EU-IT-001335-001 | 2025-01-07 | Arthritis         | None           | 152         | 171           | 185               | Dr. Brown   | Milan General Hospital\r\nEU-NE-001375 | V-EU-NE-001375-001 | 2023-10-21 | Hypertension      | ACE inhibitors | 157         | 169           | 192               | Dr. Miller  | Rotterdam General Hospital\r\nEU-IT-000143 | V-EU-IT-000143-002 | 2024-09-04 | Arthritis         | None           | 170         | 75            | 227               | Dr. Miller  | Milan General Hospital\r\n\u001b[1;32m$\u001b[0m \u001b[?25h"
+    },
+    {
+      "time": 6.0,
+      "action": "clear"
+    },
+    {
+      "time": 6.0,
+      "action": "type",
+      "prompt": "\u001b[1;32m$\u001b[0m ",
+      "text": "python3 cli/main.py --input sample_medical_records.csv --output output/compliant.csv --certificate-output output/audit_cert.json",
+      "duration": 1.6
+    },
+    {
+      "time": 8.0,
+      "action": "print",
+      "data": "╭───────────── [OAK] Project Oak • GCP Confidential Space ─────────────╮\n│ \u001b[1;36mInitiating Multi-Party Sovereign Compliance Pipeline\u001b[0m                 │\n│ Input File: \u001b[33msample_medical_records.csv\u001b[0m (SHA256: \u001b[2ma918f50f186d2a58...\u001b[0m) │\n│ Output Destination: \u001b[33moutput/compliant.csv\u001b[0m                             │\n│ Default Policy Bounds: \u001b[1mk=5, epsilon=0.5\u001b[0m                              │\n│ Max Remediation Rounds: \u001b[1m3\u001b[0m                                            │\n╰──────────────────────────────────────────────────────────────────────╯\n\n\u001b[1mStep \u001b[0m\u001b[1;36m0\u001b[0m\u001b[1m: Inspecting Peer Attestation Claims Enforced by Oak Proxy Tunnel\u001b[0m\u001b[1;33m...\u001b[0m\n\u001b[3m                    [TEE] Tunnel-Enforced Hardware Attestation & Peer TEE Claims (Oak Proxy)                     \u001b[0m\n┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓\n┃\u001b[1m \u001b[0m\u001b[1mEnclave Node        \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1m  Status  \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mTEE Platform\u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1m Debug Allowed  \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mHandshake Handle\u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mVerification Time   \u001b[0m\u001b[1m \u001b[0m┃\n┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩\n│\u001b[1;36m \u001b[0m\u001b[1;36mParty B (Evaluator) \u001b[0m\u001b[1;36m \u001b[0m│ \u001b[1;32m✓ VERIFIED\u001b[0m │\u001b[35m \u001b[0m\u001b[35mAMD_SEV_SNP \u001b[0m\u001b[35m \u001b[0m│ \u001b[32mFalse (Enforced)\u001b[0m │\u001b[2m \u001b[0m\u001b[2md4a4b10e6fed... \u001b[0m\u001b[2m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m2026-09-16T09:42:50Z\u001b[0m\u001b[32m \u001b[0m│\n│\u001b[1;36m \u001b[0m\u001b[1;36mParty A (Anonymizer)\u001b[0m\u001b[1;36m \u001b[0m│ \u001b[1;32m✓ VERIFIED\u001b[0m │\u001b[35m \u001b[0m\u001b[35mAMD_SEV_SNP \u001b[0m\u001b[35m \u001b[0m│ \u001b[32mFalse (Enforced)\u001b[0m │\u001b[2m \u001b[0m\u001b[2m87bb2cdfea39... \u001b[0m\u001b[2m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m2026-09-16T09:42:50Z\u001b[0m\u001b[32m \u001b[0m│\n└──────────────────────┴────────────┴──────────────┴──────────────────┴──────────────────┴──────────────────────┘\n"
+    },
+    {
+      "time": 14.0,
+      "action": "print",
+      "data": "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \u001b[1;36mROUND \u001b[0m\u001b[1;36m1\u001b[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\u001b[1;33m── Round \u001b[0m\u001b[1;33m1\u001b[0m\u001b[1;33m • Phase \u001b[0m\u001b[1;33m1\u001b[0m\u001b[1;33m: Independent Audit \u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33mParty B Enclave\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m ──\u001b[0m\n"
+    },
+    {
+      "time": 14.0,
+      "action": "progress",
+      "duration": 11.0,
+      "steps": 44,
+      "label": "Party B Enclave Auditing Compliance",
+      "detail": "LLM Inference in TEE",
+      "simulated_total_sec": 112.59
+    },
+    {
+      "time": 25.0,
+      "action": "replace_line",
+      "data": "\u001b[3m                                                  Party B Compliance Verdict (Round 1 in 112.59s)                                                   \u001b[0m\n┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n┃\u001b[1m \u001b[0m\u001b[1mProperty  \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mValue                                                                                                                              \u001b[0m\u001b[1m \u001b[0m┃\n┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩\n│\u001b[36m \u001b[0m\u001b[36mStatus    \u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1;31mFAIL\u001b[0m\u001b[1m                                                                                                                               \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mRisk Level\u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1mHIGH                                                                                                                               \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mViolations\u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1m4                                                                                                                                  \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mReasoning \u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1mThe dataset contains multiple raw unmasked direct identifiers (e.g., patient IDs, visit IDs, exact dates, physician names). These  \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m            \u001b[0m│\u001b[1m \u001b[0m\u001b[1mfields violate basic privacy standards and require immediate de-identi...                                                          \u001b[0m\u001b[1m \u001b[0m│\n└────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n"
+    },
+    {
+      "time": 26.0,
+      "action": "print",
+      "data": "\n\u001b[1;33m── Round \u001b[0m\u001b[1;33m1\u001b[0m\u001b[1;33m • Phase \u001b[0m\u001b[1;33m2\u001b[0m\u001b[1;33m: Progressive Remediation \u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33mParty A Enclave\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m ──\u001b[0m\n  \u001b[2m→ Invoking Party A Anonymizer Enclave \u001b[0m\u001b[1;2m(\u001b[0m\u001b[2;33mstrategy\u001b[0m\u001b[2m=\u001b[0m\u001b[2;35mlevel_1\u001b[0m\u001b[2m, \u001b[0m\u001b[2;33mk\u001b[0m\u001b[2m=\u001b[0m\u001b[1;2;36m2\u001b[0m\u001b[2m, \u001b[0m\u001b[2;33mDP\u001b[0m\u001b[2m=\u001b[0m\u001b[2;3;91mFalse\u001b[0m\u001b[1;2m)\u001b[0m\u001b[2;33m...\u001b[0m\n"
+    },
+    {
+      "time": 27.0,
+      "action": "print",
+      "data": "\u001b[32mlevel_1 \u001b[0m\u001b[1;32m(\u001b[0m\u001b[32mk\u001b[0m\u001b[32m=\u001b[0m\u001b[1;32m2\u001b[0m\u001b[32m, \u001b[0m\u001b[32mDP\u001b[0m\u001b[32m=\u001b[0m\u001b[3;32mFalse\u001b[0m\u001b[1;32m)\u001b[0m\u001b[32m applied in \u001b[0m\u001b[1;32m1.\u001b[0m\u001b[32m89s: \u001b[0m\u001b[1;32m49\u001b[0m\u001b[32m rows retained \u001b[0m\u001b[1;32m(\u001b[0m\u001b[32mUtility Score: \u001b[0m\u001b[1;32m0.94\u001b[0m\u001b[1;32m)\u001b[0m\n"
+    },
+    {
+      "time": 31.0,
+      "action": "print",
+      "data": "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \u001b[1;36mROUND \u001b[0m\u001b[1;36m2\u001b[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\u001b[1;33m── Round \u001b[0m\u001b[1;33m2\u001b[0m\u001b[1;33m • Phase \u001b[0m\u001b[1;33m1\u001b[0m\u001b[1;33m: Independent Audit \u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33mParty B Enclave\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m ──\u001b[0m\n"
+    },
+    {
+      "time": 31.0,
+      "action": "progress",
+      "duration": 6.0,
+      "steps": 24,
+      "label": "Party B Enclave Auditing Compliance",
+      "detail": "Testing Quasi-Identifier Linkage",
+      "simulated_total_sec": 101.69
+    },
+    {
+      "time": 37.0,
+      "action": "replace_line",
+      "data": "\u001b[3m                                                  Party B Compliance Verdict (Round 2 in 101.69s)                                                   \u001b[0m\n┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n┃\u001b[1m \u001b[0m\u001b[1mProperty  \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mValue                                                                                                                              \u001b[0m\u001b[1m \u001b[0m┃\n┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩\n│\u001b[36m \u001b[0m\u001b[36mStatus    \u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1;33mELEVATE\u001b[0m\u001b[1m                                                                                                                            \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mRisk Level\u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1mMEDIUM                                                                                                                             \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mViolations\u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1m2                                                                                                                                  \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mReasoning \u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1mThe dataset successfully masks direct identifiers (e.g., patient IDs, dates) and provides basic generalization (__k_level__=2,     \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m            \u001b[0m│\u001b[1m \u001b[0m\u001b[1m__intensity__=level_1). However, standard enterprise governance requires ...                                                       \u001b[0m\u001b[1m \u001b[0m│\n└────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n"
+    },
+    {
+      "time": 38.0,
+      "action": "print",
+      "data": "\n\u001b[1;33m── Round \u001b[0m\u001b[1;33m2\u001b[0m\u001b[1;33m • Phase \u001b[0m\u001b[1;33m2\u001b[0m\u001b[1;33m: Progressive Remediation \u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33mParty A Enclave\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m ──\u001b[0m\n  \u001b[2m→ Invoking Party A Anonymizer Enclave \u001b[0m\u001b[1;2m(\u001b[0m\u001b[2;33mstrategy\u001b[0m\u001b[2m=\u001b[0m\u001b[2;35mlevel_2\u001b[0m\u001b[2m, \u001b[0m\u001b[2;33mk\u001b[0m\u001b[2m=\u001b[0m\u001b[1;2;36m5\u001b[0m\u001b[2m, \u001b[0m\u001b[2;33mDP\u001b[0m\u001b[2m=\u001b[0m\u001b[2;3;92mTrue\u001b[0m\u001b[1;2m)\u001b[0m\u001b[2;33m...\u001b[0m\n"
+    },
+    {
+      "time": 39.0,
+      "action": "print",
+      "data": "\u001b[32mlevel_2 \u001b[0m\u001b[1;32m(\u001b[0m\u001b[32mk\u001b[0m\u001b[32m=\u001b[0m\u001b[1;32m5\u001b[0m\u001b[32m, \u001b[0m\u001b[32mDP\u001b[0m\u001b[32m=\u001b[0m\u001b[3;32mTrue\u001b[0m\u001b[1;32m)\u001b[0m\u001b[32m applied in \u001b[0m\u001b[1;32m1.\u001b[0m\u001b[32m88s: \u001b[0m\u001b[1;32m40\u001b[0m\u001b[32m rows retained \u001b[0m\u001b[1;32m(\u001b[0m\u001b[32mUtility Score: \u001b[0m\u001b[1;32m0.68\u001b[0m\u001b[1;32m)\u001b[0m\n"
+    },
+    {
+      "time": 43.0,
+      "action": "print",
+      "data": "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \u001b[1;36mROUND \u001b[0m\u001b[1;36m3\u001b[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\u001b[1;33m── Round \u001b[0m\u001b[1;33m3\u001b[0m\u001b[1;33m • Phase \u001b[0m\u001b[1;33m1\u001b[0m\u001b[1;33m: Independent Audit \u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33mParty B Enclave\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m ──\u001b[0m\n"
+    },
+    {
+      "time": 43.0,
+      "action": "progress",
+      "duration": 6.0,
+      "steps": 24,
+      "label": "Party B Enclave Auditing Compliance",
+      "detail": "Validating Differential Privacy Bounds",
+      "simulated_total_sec": 117.34
+    },
+    {
+      "time": 49.0,
+      "action": "replace_line",
+      "data": "\u001b[3m                                                  Party B Compliance Verdict (Round 3 in 117.34s)                                                   \u001b[0m\n┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n┃\u001b[1m \u001b[0m\u001b[1mProperty  \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mValue                                                                                                                              \u001b[0m\u001b[1m \u001b[0m┃\n┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩\n│\u001b[36m \u001b[0m\u001b[36mStatus    \u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1;32mPASS\u001b[0m\u001b[1m                                                                                                                               \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mRisk Level\u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1mLOW                                                                                                                                \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mViolations\u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1m0                                                                                                                                  \u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m \u001b[0m\u001b[36mReasoning \u001b[0m\u001b[36m \u001b[0m│\u001b[1m \u001b[0m\u001b[1mDataset verified compliant with Level 2+ sovereign privacy rules (k>=5, DP applied). LLM summary: The dataset satisfies k-anonymity\u001b[0m\u001b[1m \u001b[0m│\n│\u001b[36m            \u001b[0m│\u001b[1m \u001b[0m\u001b[1m(k>=5) and differential privacy noise bounds. Direct identifiers rem...                                                            \u001b[0m\u001b[1m \u001b[0m│\n└────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n"
+    },
+    {
+      "time": 50.0,
+      "action": "print",
+      "data": "\n\u001b[1;32m✔ Dataset successfully certified compliant in Round 3!\u001b[0m\r\nCertified dataset written to: \u001b[1;32moutput/compliant.csv\u001b[0m\r\nAudit ledger certificate written to: \u001b[1;32moutput/audit_cert.json\u001b[0m (status: APPROVED)\r\n\u001b[3m                     Pipeline Timing Summary (Rounds & Phases)                      \u001b[0m\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓\n┃\u001b[1m \u001b[0m\u001b[1mRound & Phase                              \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mEnclave Target         \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mDuration\u001b[0m\u001b[1m \u001b[0m┃\n┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩\n│\u001b[1m \u001b[0m\u001b[1mRound 1 • Phase 1 (Auditor Evaluation)     \u001b[0m\u001b[1m \u001b[0m│\u001b[36m \u001b[0m\u001b[36mParty B (Evaluator LLM)\u001b[0m\u001b[36m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m 112.59s\u001b[0m\u001b[32m \u001b[0m│\n│\u001b[1m \u001b[0m\u001b[1mRound 1 • Phase 2 (level_1 • k=2, DP=False)\u001b[0m\u001b[1m \u001b[0m│\u001b[36m \u001b[0m\u001b[36mParty A (Anonymizer)   \u001b[0m\u001b[36m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m   1.89s\u001b[0m\u001b[32m \u001b[0m│\n│\u001b[1m \u001b[0m\u001b[1mRound 2 • Phase 1 (Auditor Evaluation)     \u001b[0m\u001b[1m \u001b[0m│\u001b[36m \u001b[0m\u001b[36mParty B (Evaluator LLM)\u001b[0m\u001b[36m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m 101.69s\u001b[0m\u001b[32m \u001b[0m│\n│\u001b[1m \u001b[0m\u001b[1mRound 2 • Phase 2 (level_2 • k=5, DP=True) \u001b[0m\u001b[1m \u001b[0m│\u001b[36m \u001b[0m\u001b[36mParty A (Anonymizer)   \u001b[0m\u001b[36m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m   1.88s\u001b[0m\u001b[32m \u001b[0m│\n│\u001b[1m \u001b[0m\u001b[1mRound 3 • Phase 1 (Auditor Evaluation)     \u001b[0m\u001b[1m \u001b[0m│\u001b[36m \u001b[0m\u001b[36mParty B (Evaluator LLM)\u001b[0m\u001b[36m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m 117.34s\u001b[0m\u001b[32m \u001b[0m│\n├─────────────────────────────────────────────┼─────────────────────────┼──────────┤\n│\u001b[1m \u001b[0m\u001b[1mTotal Pipeline Runtime\u001b[0m\u001b[1m                     \u001b[0m\u001b[1m \u001b[0m│\u001b[36m \u001b[0m\u001b[1;36mAll Enclaves\u001b[0m\u001b[36m           \u001b[0m\u001b[36m \u001b[0m│\u001b[32m \u001b[0m\u001b[32m \u001b[0m\u001b[1;32m337.66s\u001b[0m\u001b[32m \u001b[0m│\n└─────────────────────────────────────────────┴─────────────────────────┴──────────┘\n\r\n\u001b[1;32m$\u001b[0m \u001b[?25h"
+    },
+    {
+      "time": 57.0,
+      "action": "clear"
+    },
+    {
+      "time": 57.0,
+      "action": "type",
+      "prompt": "\u001b[1;32m$\u001b[0m ",
+      "text": "head -n 7 output/compliant.csv | column -t -s, -o ' | '",
+      "duration": 1.6
+    },
+    {
+      "time": 59.0,
+      "action": "print",
+      "data": "patient_id | visit_id | visit_date | primary_condition | treatment      | systolic_bp | glucose_mg_dl | cholesterol_mg_dl | physician | hospital     | __k_level__\r\nPT-***     | VS-***   | 202*       | Routine checkup   | None           | 137         | 75            | 187               | Dr. ***   | Hospital-*** | 5\r\nPT-***     | VS-***   | 202*       | Routine checkup   | None           | 126         | 199           | 280               | Dr. ***   | Hospital-*** | 5\r\nPT-***     | VS-***   | 202*       | Hypertension      | Beta blockers  | 135         | 161           | 250               | Dr. ***   | Hospital-*** | 5\r\nPT-***     | VS-***   | 202*       | Arthritis         | None           | 152         | 171           | 185               | Dr. ***   | Hospital-*** | 5\r\nPT-***     | VS-***   | 202*       | Hypertension      | ACE inhibitors | 157         | 169           | 192               | Dr. ***   | Hospital-*** | 5\r\nPT-***     | VS-***   | 202*       | Arthritis         | None           | 170         | 75            | 227               | Dr. ***   | Hospital-*** | 5\r\n\u001b[1;32m$\u001b[0m \u001b[?25h"
+    },
+    {
+      "time": 65.0,
+      "action": "clear"
+    },
+    {
+      "time": 65.0,
+      "action": "type",
+      "prompt": "\u001b[1;32m$\u001b[0m ",
+      "text": "jq --color-output . output/audit_cert.json",
+      "duration": 1.6
+    },
+    {
+      "time": 67.0,
+      "action": "print",
+      "data": "\u001b[1;39m{\u001b[0m\r\n  \u001b[1;34m\"audit_id\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"AUDIT-B2539771\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"timestamp\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"2026-09-16T09:48:28.689684Z\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"target_profile\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"EU_AI_ACT_HEALTHCARE\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"input_hash\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"a918f50f186d2a581cb098e840c6045f8177b75da00f3805dad5c475908c9811\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"output_hash\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"e328db41470d9ec6486971ac026e8ef03abbddb88d06b5a62dbcfc03c9381470\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"attestation_claims\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n    \u001b[1;34m\"party_a_anonymizer\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"enclave_url\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"http://127.0.0.1:8081\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"oak_attestation\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n        \u001b[1;34m\"status\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"verified\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"handshake_handle\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"87bb2cdfea3906f3cb89f738589dfddbede18292fe604b32abae7eddba3f\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"verification_time\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"2026-09-16T09:42:50Z\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"root_layer\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n          \u001b[1;34m\"platform\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"AMD_SEV_SNP\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n          \u001b[1;34m\"allow_debug\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mfalse\u001b[0m\r\n        \u001b[1;39m}\u001b[0m\r\n      \u001b[1;39m}\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;34m\"party_b_evaluator\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"enclave_url\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"http://127.0.0.1:8082\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"oak_attestation\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n        \u001b[1;34m\"status\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"verified\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"handshake_handle\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"d4a4b10e6fedded41ec1231639ab3c0472cd14dc150c821808def0e521b5e325d0\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"verification_time\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"2026-09-16T09:42:50Z\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"root_layer\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n          \u001b[1;34m\"platform\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"AMD_SEV_SNP\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n          \u001b[1;34m\"allow_debug\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mfalse\u001b[0m\r\n        \u001b[1;39m}\u001b[0m\r\n      \u001b[1;39m}\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\r\n  \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"rounds_log\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n    \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"round\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39m1\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"phase_1_duration_seconds\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39m112.59\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"evaluator_verdict\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n        \u001b[1;34m\"compliant\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mfalse\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"status\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"FAIL\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"risk_level\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"HIGH\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"violations\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n          \u001b[0;32m\"Unmasked direct identifier: patient_id\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n          \u001b[0;32m\"Unmasked direct identifier: visit_id\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n          \u001b[0;32m\"Unmasked direct identifier: physician (Dr. Brown, Dr. Johnson, etc.)\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n          \u001b[0;32m\"High-resolution quasi-identifier: visit_date (full date format)\"\u001b[0m\r\n        \u001b[1;39m]\u001b[0m\r\n      \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"remediation_strategy_applied\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"level_1 (k=2, DP=False)\"\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"round\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39m2\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"phase_1_duration_seconds\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39m101.69\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"evaluator_verdict\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n        \u001b[1;34m\"compliant\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mfalse\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"status\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"ELEVATE\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"risk_level\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"MEDIUM\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"violations\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[\u001b[0m\r\n          \u001b[0;32m\"Quasi-identifier linkage vulnerability at k=2\"\u001b[0m\r\n        \u001b[1;39m]\u001b[0m\r\n      \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"remediation_strategy_applied\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"level_2 (k=5, DP=True, epsilon=0.5)\"\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n    \u001b[1;39m{\u001b[0m\r\n      \u001b[1;34m\"round\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39m3\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"phase_1_duration_seconds\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39m117.34\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"evaluator_verdict\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m{\u001b[0m\r\n        \u001b[1;34m\"compliant\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;39mtrue\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"status\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"PASS\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"risk_level\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"LOW\"\u001b[0m\u001b[1;39m,\u001b[0m\r\n        \u001b[1;34m\"violations\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[1;39m[]\u001b[0m\r\n      \u001b[1;39m}\u001b[0m\u001b[1;39m,\u001b[0m\r\n      \u001b[1;34m\"remediation_strategy_applied\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;90mnull\u001b[0m\r\n    \u001b[1;39m}\u001b[0m\r\n  \u001b[1;39m]\u001b[0m\u001b[1;39m,\u001b[0m\r\n  \u001b[1;34m\"status\"\u001b[0m\u001b[1;39m:\u001b[0m \u001b[0;32m\"APPROVED\"\u001b[0m\r\n\u001b[1;39m}\u001b[0m\r\n\r\n\u001b[1;32m$\u001b[0m \u001b[?25h",
+      "scroll_to": 0
+    },
+    {
+      "time": 73.0,
+      "action": "scroll",
+      "from_line": 0,
+      "to_line": 24,
+      "duration": 2.0,
+      "steps": 12
+    },
+    {
+      "time": 79.0,
+      "action": "scroll",
+      "from_line": 24,
+      "to_line": 44,
+      "duration": 2.0,
+      "steps": 12
+    }
+  ]
+}

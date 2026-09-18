@@ -6,8 +6,45 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 0 40px;
+  padding: 0 60px;
   text-align: center;
+}
+
+/* Header-at-top layout for slides with centered video or terminal modals */
+.slide-content.slide-top-header {
+  justify-content: flex-start;
+  padding-top: 36px;
+}
+
+.slide-content.slide-top-header .section-title {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.slide-content.slide-top-header .hero-subtitle {
+  font-size: 1.15rem;
+  max-width: 960px;
+}
+
+/* Left-hand column layout for slides with right-hand side-panel video modals */
+.slide-content.slide-left-panel {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  width: 880px;
+  padding-left: 96px;
+  padding-right: 40px;
+}
+
+.slide-content.slide-left-panel .section-title {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  line-height: 1.18;
+}
+
+.slide-content.slide-left-panel .hero-subtitle {
+  font-size: 1.3rem;
+  max-width: 720px;
 }
 
 .badge-pill {
@@ -24,7 +61,7 @@
 }
 
 .hero-title {
-  font-size: 3.6rem;
+  font-size: 3.8rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 18px;
@@ -36,7 +73,7 @@
 .hero-subtitle {
   font-size: 1.35rem;
   color: var(--slate-400);
-  max-width: 720px;
+  max-width: 780px;
   line-height: 1.55;
 }
 
@@ -51,8 +88,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 1100px;
+  max-width: 1200px;
   width: 100%;
+}
+
+.card-grid.card-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1520px;
 }
 
 .card {
@@ -62,7 +104,7 @@
   border-radius: 14px;
   padding: 28px 24px;
   text-align: left;
-  transition: var(--transition-smooth);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover {
@@ -73,7 +115,8 @@
 
 .card.active-focus {
   border-color: var(--google-green);
-  box-shadow: 0 0 20px rgba(52, 168, 83, 0.2);
+  box-shadow: 0 0 24px rgba(52, 168, 83, 0.25);
+  transform: translateY(-4px);
 }
 
 .card-icon {

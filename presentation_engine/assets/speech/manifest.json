@@ -1,0 +1,44 @@
+[
+  {
+    "index": 0,
+    "file": "assets/speech/cap_00.opus",
+    "duration": 4.41,
+    "text": "Welcome to the Declarative Web Presentation Engine showcase."
+  },
+  {
+    "index": 1,
+    "file": "assets/speech/cap_01.opus",
+    "duration": 8.53,
+    "text": "All slide transitions, speech clips, video modals, and terminal streams are orchestrated via timeline.yaml."
+  },
+  {
+    "index": 2,
+    "file": "assets/speech/cap_02.opus",
+    "duration": 5.93,
+    "text": "Watch as the engine overlays centered video modals and speech captions in real-time."
+  },
+  {
+    "index": 3,
+    "file": "assets/speech/cap_03.opus",
+    "duration": 8.01,
+    "text": "Side-panel videos allow real-time watch-along demos while slide content and live toast notifications remain visible."
+  },
+  {
+    "index": 4,
+    "file": "assets/speech/cap_04.opus",
+    "duration": 10.29,
+    "text": "Crisp vector VT100 and ANSI DOM terminal streams replay deterministically with 256-color SGR tables and live spinners."
+  },
+  {
+    "index": 5,
+    "file": "assets/speech/cap_05.opus",
+    "duration": 6.65,
+    "text": "Speech audio clips play seamlessly with clean buffer management and frame-accurate Opus playback."
+  },
+  {
+    "index": 6,
+    "file": "assets/speech/cap_06.opus",
+    "duration": 4.73,
+    "text": "Clone engine/template/ into your new deck directory and start presenting!"
+  }
+]
