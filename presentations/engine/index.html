@@ -2,14 +2,250 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/presentation_engine/">
-  <link rel="canonical" href="https://evgenyy-google.github.io/presentation_engine/">
-  <title>Redirecting to DWPE Presentation Engine...</title>
-  <script>
-    window.location.replace("/presentation_engine/" + window.location.search + window.location.hash);
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Declarative Web Presentation Engine (DWPE) Showcase</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,600&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="engine.css">
+  <link rel="stylesheet" href="deck.css">
 </head>
 <body>
-  <p>Redirecting to <a href="/presentation_engine/">DWPE Presentation Engine</a>...</p>
+  <!-- Standard Slide Viewport Container (Auto-scales to 16:9 viewport / 1080p & 720p) -->
+  <div id="stage" class="stage">
+
+    <!-- Floating Toast Status Badge -->
+    <div id="toast-overlay" class="toast-hidden">
+      <div class="toast-card">
+        <span class="toast-dot"></span>
+        <span id="toast-text">Notification status update...</span>
+      </div>
+    </div>
+
+    <!-- Video Overlay & Backdrop Modal Container -->
+    <div id="video-container" class="video-pos-hidden">
+      <div class="video-top-lockup">
+        <span class="logo-badge">DWPE Live Video Modal</span>
+      </div>
+      <div class="video-crop-viewport">
+        <video id="demo-video" src="assets/demo_video.mp4" muted playsinline preload="auto"></video>
+      </div>
+      <div id="video-speed-badge">1.0x</div>
+    </div>
+
+    <!-- Native DOM Terminal Emulator Window Container -->
+    <div id="terminal-container" class="terminal-window terminal-pos-hidden">
+      <div class="terminal-header">
+        <div class="terminal-traffic-lights">
+          <span class="traffic-dot dot-red"></span>
+          <span class="traffic-dot dot-yellow"></span>
+          <span class="traffic-dot dot-green"></span>
+        </div>
+        <div id="terminal-title" class="terminal-title">GCP Confidential Spaces - Oak Compliance Example</div>
+        <div class="terminal-header-spacer"></div>
+      </div>
+      <div class="terminal-viewport">
+        <div id="term-dom-canvas" class="term-dom-canvas"></div>
+        <div id="ff-popup" class="ff-popup">⏩ &gt;&gt; FAST-FORWARD &bull; 112s INFERENCE &gt;&gt;</div>
+      </div>
+      <div id="video-callout" class="video-callout">⚡ Native DOM Terminal Emulator • Deterministic VT100/ANSI Replay</div>
+    </div>
+
+    <!-- Single Canonical Slide Deck Hierarchy -->
+    <slides id="slides-container">
+      <!-- Slide 1: Title & Hero Badge -->
+      <slide id="slide-1" class="active">
+        <div class="slide-content">
+          <div class="badge-pill">Framework Standard</div>
+          <h1 class="hero-title">Declarative Web Presentation Engine</h1>
+          <p class="hero-subtitle">Zero-JS declarative keynotes driven by HTML, CSS, native DOM terminals, and timeline.yaml</p>
+        </div>
+      </slide>
+
+      <!-- Slide 2: Feature Matrix & Code Snippet -->
+      <slide id="slide-2">
+        <div class="slide-content">
+          <h2 class="section-title">Core Engine Architecture</h2>
+          <div class="card-grid card-grid-4">
+            <div class="card" id="card-timeline">
+              <span class="card-icon">📜</span>
+              <h3>timeline.yaml</h3>
+              <p>Single authoritative source of truth for slide transitions, speech clips, video modals, and terminal streams.</p>
+            </div>
+            <div class="card" id="card-engine">
+              <span class="card-icon">⚡</span>
+              <h3>engine.js</h3>
+              <p>Deterministic runtime managing keyboard shortcuts, focal video crops, popout auto-resize, and screen recording.</p>
+            </div>
+            <div class="card" id="card-terminal">
+              <span class="card-icon">💻</span>
+              <h3>TermPlayer</h3>
+              <p>Vector-sharp VT100/ANSI DOM terminal emulator supporting 256-color SGR, rich tables, and live spinners.</p>
+            </div>
+            <div class="card" id="card-css">
+              <span class="card-icon">🎨</span>
+              <h3>engine.css</h3>
+              <p>16:9 responsive stage scaling with neutral slate palettes, Google accents, and zero-flash recording states.</p>
+            </div>
+          </div>
+        </div>
+      </slide>
+
+      <!-- Slide 3: Centered Video Modal Zoom -->
+      <slide id="slide-3">
+        <div class="slide-content slide-top-header">
+          <h2 class="section-title">Centered Video Modal Overlay</h2>
+          <p class="hero-subtitle">Watch as timeline.yaml triggers centered video modal popups with pixel-exact focal crops.</p>
+        </div>
+      </slide>
+
+      <!-- Slide 4: Side-Panel Video & Toast Notification -->
+      <slide id="slide-4">
+        <div class="slide-content slide-left-panel">
+          <div class="badge-pill">Split-Screen Layout</div>
+          <h2 class="section-title">Side-Panel Video &amp; Toast Badges</h2>
+          <p class="hero-subtitle">Side-panel videos allow real-time watch-along demos while slide content and live toast notifications remain fully visible on the left.</p>
+        </div>
+      </slide>
+
+      <!-- Slide 5: Native DOM Terminal Emulator -->
+      <slide id="slide-5">
+        <div class="slide-content slide-top-header">
+          <h2 class="section-title">Native DOM Terminal Emulator</h2>
+          <p class="hero-subtitle">Crisp vector VT100/ANSI terminal replay compiled from declarative .term.json streams.</p>
+        </div>
+      </slide>
+
+      <!-- Slide 6: Closed Caption Subtitle Alignment -->
+      <slide id="slide-6">
+        <div class="slide-content">
+          <div class="badge-pill">Audio &amp; Captions</div>
+          <h2 class="section-title">Audio &amp; Closed Caption Sync</h2>
+          <p class="hero-subtitle">Pre-synthesized TTS MP3 speech clips play seamlessly with zero-overlap buffer management and configurable recording visibility.</p>
+        </div>
+      </slide>
+
+      <!-- Slide 7: Outro & Takeaways -->
+      <slide id="slide-7">
+        <div class="slide-content">
+          <div class="badge-pill">Production Ready</div>
+          <h2 class="section-title">Ready to Present &amp; Record</h2>
+          <p class="hero-subtitle">Use the Recording Settings gear to pop out a 1080p/720p window with 1:1 pixel sharpness and zero UI flash!</p>
+        </div>
+      </slide>
+    </slides>
+
+    <!-- Closed Caption Subtitle Overlay -->
+    <div id="cc-overlay" class="cc-overlay cc-hidden">
+      <span id="cc-speaker" style="display:none;"></span>
+      <div id="cc-text" class="cc-text"></div>
+    </div>
+
+    <!-- 3-2-1 Countdown Splash Overlay -->
+    <div id="countdown-splash" class="countdown-splash">
+      <div id="countdown-number" class="countdown-number">3</div>
+      <div class="countdown-label">Get Ready...</div>
+    </div>
+
+    <!-- Full-Featured Footer Controls Bar -->
+    <footer class="footer-nav">
+      <div class="logo-footer">DWPE Showcase</div>
+      <div id="nav-hints" class="nav-hints">
+        <button id="prev-slide-btn" class="control-btn" title="Previous Slide (Left Arrow)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M15 18l-6-6 6-6"/></svg>Prev
+        </button>
+        <button id="play-pause-btn" class="control-btn" title="Play/Pause (Space)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play
+        </button>
+        <button id="next-slide-btn" class="control-btn" title="Next Slide (Right Arrow)">
+          Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <!-- Inline Timer & Slide Count Indicator -->
+        <div id="timer-display" class="timer-display">
+          <span id="slide-info-text" style="color: var(--google-blue);">Slide 1/7</span>
+          <span class="timer-divider">•</span>
+          <span id="timer-count">0:00</span>
+          <div id="slide-progress-bar" class="slide-progress-bar"></div>
+        </div>
+
+        <button id="cc-toggle-btn" class="control-btn active" title="Toggle Closed Captions (C)">CC Subtitles</button>
+        <button id="audio-mute-btn" class="control-btn" title="Toggle Audio Speech (M)">🔇 Unmute</button>
+
+        <div id="speed-control-container" class="speed-control-container">
+          <span class="speed-label">Speed: <strong id="speed-val" style="color: var(--google-blue);">1x</strong></span>
+          <input type="range" id="speed-slider" min="0" max="8" step="1" value="2" class="speed-slider">
+        </div>
+
+        <!-- Record Control & Configuration Popover -->
+        <div class="record-btn-wrapper">
+          <button id="record-btn" class="control-btn record-btn" title="Record Screen (R)">🔴 Record</button>
+          <button id="record-config-btn" class="control-btn record-config-btn" title="Recording Configuration">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+          <div id="record-config-popover" class="record-config-popover">
+            <div class="record-config-header">
+              <span class="record-config-title">Recording Settings</span>
+              <button id="record-config-close" class="record-config-close" title="Close">✕</button>
+            </div>
+            <div class="record-config-body">
+              <div class="record-config-section">
+                <span class="record-config-section-title">Viewport Resolution</span>
+                <div class="record-config-radios">
+                  <label class="record-radio-label">
+                    <input type="radio" name="rec-res" value="1080p" checked>
+                    <span>1080p (1920×1080)</span>
+                  </label>
+                  <label class="record-radio-label">
+                    <input type="radio" name="rec-res" value="720p">
+                    <span>720p (1280×720)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="record-config-section">
+                <span class="record-config-section-title">Elements</span>
+                <label class="record-checkbox-label">
+                  <input type="checkbox" id="rec-opt-subtitles" checked>
+                  <span>Subtitles (CC)</span>
+                </label>
+                <label class="record-checkbox-label">
+                  <input type="checkbox" id="rec-opt-progress" checked>
+                  <span>Slide Progress &amp; Timer</span>
+                </label>
+              </div>
+              <div class="record-config-section">
+                <span class="record-config-section-title">Window Sizing</span>
+                <!-- Shown when in a standard browser tab (window.resizeTo blocked by browser policy) -->
+                <div id="rec-tab-resize-container">
+                  <button id="rec-popout-btn" class="control-btn rec-popout-btn" title="Open presentation in isolated window to enable exact viewport resizing">
+                    🗗 Open in Popout (1080p)
+                  </button>
+                  <div class="rec-hint-text">
+                    Tabs cannot be resized by browser policy. Popout enables window auto-resize &amp; 1:1 pixel sharpness.
+                  </div>
+                </div>
+                <!-- Shown when already running inside the resizable popout window -->
+                <div id="rec-popout-active-container" style="display: none;">
+                  <label class="record-checkbox-label">
+                    <input type="checkbox" id="rec-opt-autoresize" checked>
+                    <span>Auto-resize Viewport</span>
+                    <span class="rec-popout-badge">✓ Popout Active</span>
+                  </label>
+                  <div class="rec-hint-text">
+                    Automatically adjusts window after recording starts to compensate for Chrome's capture banner.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="slide-dots" class="slide-dots"></div>
+    </footer>
+  </div>
+
+  <!-- Shared Runtime Engine -->
+  <script src="engine.js"></script>
 </body>
 </html>
